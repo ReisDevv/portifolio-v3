@@ -5,6 +5,7 @@ import { useLanguage } from '@/context/LanguageContext'
 import { HeroCanvas } from '@/components/canvas/HeroCanvas'
 import { AuroraOrbs } from '@/components/canvas/AuroraOrbs'
 import { GeometricShape } from '@/components/canvas/GeometricShape'
+import { CodeTerminal } from '@/components/canvas/CodeTerminal'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useScrambleText } from '@/hooks/useScrambleText'
 import styles from './Hero.module.css'
@@ -47,6 +48,9 @@ export function Hero() {
 
         {/* Dot-grid background */}
         <div className={styles.dotGrid} aria-hidden="true" />
+
+        {/* Floating C# code terminal */}
+        <CodeTerminal />
 
         {/* 3D rotating cube */}
         <GeometricShape />

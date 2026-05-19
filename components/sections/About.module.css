@@ -16,6 +16,31 @@
   top: 100px;
 }
 
+.imageFrame {
+  position: relative;
+}
+
+.halo {
+  position: absolute;
+  inset: -5px;
+  border-radius: calc(var(--radius-lg) + 5px);
+  border: 1.5px solid rgba(0, 255, 136, 0.3);
+  pointer-events: none;
+  z-index: 2;
+  animation: haloBreath 4s ease-in-out infinite;
+}
+
+@keyframes haloBreath {
+  0%, 100% {
+    border-color: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 18px rgba(0, 255, 136, 0.08);
+  }
+  50% {
+    border-color: rgba(0, 255, 136, 0.55);
+    box-shadow: 0 0 48px rgba(0, 255, 136, 0.22);
+  }
+}
+
 .imageWrapper {
   position: relative;
   border-radius: var(--radius-lg);

@@ -13,16 +13,19 @@ export function About() {
     <section id="about" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.imageCol}>
-          <div className={styles.imageWrapper}>
-            <Image
-              src="/assets/profile.jpeg"
-              alt="Nelson Reis"
-              fill
-              className={styles.photo}
-              sizes="(max-width: 900px) 100vw, 45vw"
-              priority={false}
-            />
-            <div className={styles.imageGlow} aria-hidden="true" />
+          <div className={styles.imageFrame}>
+            <div className={styles.halo} aria-hidden="true" />
+            <div className={styles.imageWrapper}>
+              <Image
+                src="/assets/profile.jpeg"
+                alt="Nelson Reis"
+                fill
+                className={styles.photo}
+                sizes="(max-width: 900px) 100vw, 45vw"
+                priority={false}
+              />
+              <div className={styles.imageGlow} aria-hidden="true" />
+            </div>
           </div>
 
           <div className={styles.stats}>
