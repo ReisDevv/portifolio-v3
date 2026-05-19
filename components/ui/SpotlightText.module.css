@@ -1,0 +1,38 @@
+.section {
+  padding: clamp(80px, 12vh, 140px) var(--section-px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind the text */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0, 255, 136, 0.04), transparent 70%);
+  pointer-events: none;
+}
+
+.text {
+  position: relative;
+  max-width: 880px;
+  font-size: clamp(26px, 3.8vw, 54px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.word {
+  display: inline;
+  /* opacity set by GSAP, default fallback: */
+  opacity: 0.18;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word { opacity: 1; }
+}

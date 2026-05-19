@@ -1,9 +1,69 @@
 'use client'
-import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
+import { ChatBot } from '@/components/ui/ChatBot'
 import { RevealText } from '@/components/ui/RevealText'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import styles from './About.module.css'
+
+function useCountUp(target, duration = 1400) {
+  const [count, setCount] = useState(0)
+  const [active, setActive] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setActive(true) },
+      { threshold: 0.6 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!active) return
+    const numeric = parseInt(target, 10)
+    if (isNaN(numeric)) return
+    let start
+    const raf = (ts) => {
+      if (!start) start = ts
+      const p = Math.min((ts - start) / duration, 1)
+      setCount(Math.floor(numeric * p))
+      if (p < 1) requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
+  }, [active, target, duration])
+
+  return { ref, count, active }
+}
+
+function StatItem({ value, label }) {
+  const numeric = parseInt(value, 10)
+  const hasSuffix = value.includes('+')
+  const isNumeric = !isNaN(numeric)
+  const { ref, count, active } = useCountUp(value)
+
+  const display = isNumeric
+    ? `${active ? count : 0}${hasSuffix ? '+' : ''}`
+    : value
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.stat}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <span className={styles.statValue}>{display}</span>
+      <span className={styles.statLabel}>{label}</span>
+    </motion.div>
+  )
+}
 
 export function About() {
   const { t } = useLanguage()
@@ -12,34 +72,21 @@ export function About() {
   return (
     <section id="about" className={styles.section}>
       <div className={styles.inner}>
-        <div className={styles.imageCol}>
-          <div className={styles.imageFrame}>
-            <div className={styles.halo} aria-hidden="true" />
-            <div className={styles.imageWrapper}>
-              <Image
-                src="/assets/profile.jpeg"
-                alt="Nelson Reis"
-                fill
-                className={styles.photo}
-                sizes="(max-width: 900px) 100vw, 45vw"
-                priority={false}
-              />
-              <div className={styles.imageGlow} aria-hidden="true" />
-            </div>
-          </div>
 
-          <div className={styles.stats}>
-            {about.stats.map((stat, i) => (
-              <RevealText key={i} delay={0.1 * i}>
-                <div className={styles.stat}>
-                  <span className={styles.statValue}>{stat.value}</span>
-                  <span className={styles.statLabel}>{stat.label}</span>
-                </div>
-              </RevealText>
-            ))}
-          </div>
+        {/* Left — sticky chatbot */}
+        <div className={styles.chatCol}>
+          <motion.div
+            className={styles.chatWrapper}
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <ChatBot />
+          </motion.div>
         </div>
 
+        {/* Right — text + stats */}
         <div className={styles.textCol}>
           <SectionLabel eyebrow="SOBRE MIM" title={about.headline} />
 
@@ -50,7 +97,14 @@ export function About() {
               </RevealText>
             ))}
           </div>
+
+          <div className={styles.stats}>
+            {about.stats.map((stat, i) => (
+              <StatItem key={i} value={stat.value} label={stat.label} />
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   )
