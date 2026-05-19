@@ -10,7 +10,7 @@ function scrollToSection(id) {
 }
 
 export function Navbar() {
-  const { t, toggleLang } = useLanguage()
+  const { t, toggleLang, lang } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -54,9 +54,22 @@ export function Navbar() {
         </ul>
 
         <div className={styles.actions}>
-          <button onClick={toggleLang} className={styles.langBtn} aria-label="Trocar idioma">
-            {t.nav.langLabel}
-          </button>
+          <div className={styles.langToggle} role="group" aria-label="Idioma">
+            <button
+              className={`${styles.langOpt} ${lang === 'pt' ? styles.langActive : ''}`}
+              onClick={() => lang !== 'pt' && toggleLang()}
+              aria-pressed={lang === 'pt'}
+            >
+              PT
+            </button>
+            <button
+              className={`${styles.langOpt} ${lang === 'en' ? styles.langActive : ''}`}
+              onClick={() => lang !== 'en' && toggleLang()}
+              aria-pressed={lang === 'en'}
+            >
+              EN
+            </button>
+          </div>
           <button
             className={styles.hamburger}
             onClick={() => setMenuOpen(v => !v)}
@@ -99,9 +112,16 @@ export function Navbar() {
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: navLinks.length * 0.06, duration: 0.3 }}
               >
-                <button onClick={toggleLang} className={styles.mobileLang}>
-                  {t.nav.langLabel}
-                </button>
+                <div className={styles.mobileLangToggle} role="group" aria-label="Idioma">
+                  <button
+                    className={`${styles.mobileLangOpt} ${lang === 'pt' ? styles.mobileLangActive : ''}`}
+                    onClick={() => lang !== 'pt' && toggleLang()}
+                  >PT</button>
+                  <button
+                    className={`${styles.mobileLangOpt} ${lang === 'en' ? styles.mobileLangActive : ''}`}
+                    onClick={() => lang !== 'en' && toggleLang()}
+                  >EN</button>
+                </div>
               </motion.li>
             </ul>
           </motion.div>
