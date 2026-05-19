@@ -11,7 +11,7 @@ const SAMPLE_STEP = 5
 const SPRING_STIFFNESS = 0.055
 const FRICTION = 0.84
 const CONVERGENCE_DURATION = 2200
-const ACCENT_COLOR = '#cc00ff'
+const ACCENT_COLOR = '#00ff88'
 const TEXT_COLOR = '#f0f0f5'
 
 class Particle {
@@ -23,7 +23,7 @@ class Particle {
     this.vx = 0
     this.vy = 0
     this.radius = Math.random() * 1.5 + 0.8
-    this.isAccent = Math.random() < 0.35
+    this.isAccent = Math.random() < 0.4
     this.alpha = Math.random() * 0.4 + 0.6
     this.scatterX = tx
     this.scatterY = ty
@@ -50,8 +50,8 @@ class Particle {
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
     ctx.fillStyle = this.isAccent
-      ? `rgba(204, 0, 255, ${this.alpha})`
-      : `rgba(240, 240, 245, ${this.alpha * 0.7})`
+      ? `rgba(0, 255, 136, ${this.alpha})`
+      : `rgba(232, 240, 234, ${this.alpha * 0.6})`
     ctx.fill()
 
     if (this.isAccent) {

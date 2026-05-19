@@ -1,0 +1,14 @@
+.tilt {
+  position: relative;
+  transform-style: preserve-3d;
+  border-radius: var(--radius-lg);
+}
+
+.glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.1s ease;
+}

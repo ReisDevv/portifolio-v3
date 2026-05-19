@@ -48,7 +48,7 @@
 
 .pill:hover,
 .pillActive {
-  background: rgba(204, 0, 255, 0.22);
+  background: rgba(0, 255, 136, 0.18);
   border-color: var(--color-accent);
 }
 

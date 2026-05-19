@@ -3,7 +3,10 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import { HeroCanvas } from '@/components/canvas/HeroCanvas'
+import { AuroraOrbs } from '@/components/canvas/AuroraOrbs'
+import { GeometricShape } from '@/components/canvas/GeometricShape'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useScrambleText } from '@/hooks/useScrambleText'
 import styles from './Hero.module.css'
 
 const containerVariants = {
@@ -22,22 +25,12 @@ const letterVariants = {
   show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 }
 
-function CharSplit({ text, className }) {
+function ScrambleTitle({ text, reduced }) {
+  const display = useScrambleText(text, { delay: 400, duration: 1400, reduced })
   return (
-    <motion.span
-      className={className}
-      variants={{ hidden: {}, show: { transition: { staggerChildren: 0.025 } } }}
-    >
-      {text.split('').map((char, i) => (
-        <motion.span
-          key={i}
-          variants={letterVariants}
-          style={{ display: 'inline-block', whiteSpace: char === ' ' ? 'pre' : 'normal' }}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </motion.span>
+    <span className={styles.scramble} aria-label={text}>
+      {display}
+    </span>
   )
 }
 
@@ -49,6 +42,16 @@ export function Hero() {
   return (
     <div id="hero" className={styles.scrollContainer}>
       <div className={styles.sticky} ref={sectionRef}>
+        {/* Aurora orbs — floating gradient blobs */}
+        <AuroraOrbs sectionRef={sectionRef} />
+
+        {/* Dot-grid background */}
+        <div className={styles.dotGrid} aria-hidden="true" />
+
+        {/* 3D rotating cube */}
+        <GeometricShape />
+
+        {/* NR particle canvas */}
         <HeroCanvas sectionRef={sectionRef} />
 
         <motion.div
@@ -62,25 +65,7 @@ export function Hero() {
           </motion.span>
 
           <h1 className={styles.title}>
-            {reduced ? (
-              t.hero.title
-            ) : (
-              <motion.span
-                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.025, delayChildren: 0.2 } } }}
-                initial="hidden"
-                animate="show"
-              >
-                {t.hero.title.split('').map((char, i) => (
-                  <motion.span
-                    key={i}
-                    variants={letterVariants}
-                    style={{ display: 'inline-block', whiteSpace: char === ' ' ? 'pre' : 'normal' }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.span>
-            )}
+            {reduced ? t.hero.title : <ScrambleTitle text={t.hero.title} reduced={reduced} />}
           </h1>
 
           <motion.p className={styles.subtitle} variants={itemVariants}>
@@ -103,7 +88,6 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Gradient overlay bottom */}
         <div className={styles.bottomFade} aria-hidden="true" />
       </div>
     </div>

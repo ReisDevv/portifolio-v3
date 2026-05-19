@@ -90,7 +90,7 @@ section {
   gap: 8px;
   padding: 14px 32px;
   background: var(--color-accent);
-  color: #fff;
+  color: #080c0a;
   border: none;
   border-radius: var(--radius-full);
   font-size: var(--font-size-base);
@@ -102,7 +102,8 @@ section {
 }
 
 .btn-primary:hover {
-  background: #d600ff;
+  background: #00e87a;
+  color: #080c0a;
   transform: translateY(-2px);
   box-shadow: 0 8px 32px var(--color-accent-glow);
 }

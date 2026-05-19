@@ -2,6 +2,22 @@
   height: 200vh;
 }
 
+/* Apple-style dot grid background */
+.dotGrid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 255, 136, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+}
+
 .sticky {
   position: sticky;
   top: 0;
@@ -40,14 +56,19 @@
   color: var(--color-text-primary);
   background: linear-gradient(
     135deg,
-    #f0f0f5 0%,
-    rgba(204, 0, 255, 0.8) 50%,
-    #f0f0f5 100%
+    #e8f0ea 0%,
+    rgba(0, 255, 136, 0.9) 50%,
+    #e8f0ea 100%
   );
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.scramble {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {

@@ -8,10 +8,20 @@
   gap: 20px;
 }
 
+.cardWrapper {
+  display: block;
+}
+
+.tiltOuter {
+  display: block;
+  height: 100%;
+}
+
 .cardLink {
   display: block;
   text-decoration: none;
   color: inherit;
+  height: 100%;
 }
 
 .card {
@@ -25,8 +35,8 @@
 }
 
 .card:hover {
-  box-shadow: 0 24px 60px rgba(204, 0, 255, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 60px rgba(0, 255, 136, 0.12),
+              inset 0 1px 0 rgba(0, 255, 136, 0.06);
 }
 
 .cardHeader {
