@@ -12,6 +12,7 @@
     "cloud    frontend";
   gap: 14px;
   margin-bottom: 48px;
+  perspective: 1400px;
 }
 
 .catCard {
@@ -29,12 +30,34 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--t-base), transform var(--t-base);
 }
+
+.catInner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(94, 158, 255, 0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--t-base);
+  pointer-events: none;
+}
+
+.catInner:hover {
+  box-shadow:
+    0 24px 60px rgba(94, 158, 255, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.catInner:hover::before { opacity: 1; }
 
 .catHeader {
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 
 .catDot {
@@ -48,7 +71,7 @@
 .catLabel {
   font-size: var(--font-size-xs);
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -57,6 +80,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  position: relative;
 }
 
 .chipWrapper {
@@ -74,7 +98,7 @@
   font-family: inherit;
   cursor: default;
   text-align: left;
-  transition: background var(--t-fast), border-color var(--t-fast);
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
   padding: 0;
 }
 
@@ -82,18 +106,19 @@
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text-primary);
-  padding: 8px 14px;
+  padding: 9px 14px;
   cursor: pointer;
-  background: var(--chip-bg, rgba(0, 255, 136, 0.06));
-  border-color: var(--chip-border, rgba(0, 255, 136, 0.15));
+  background: var(--chip-bg, rgba(94, 158, 255, 0.08));
+  border-color: var(--chip-border, rgba(94, 158, 255, 0.18));
   border-radius: var(--radius-sm);
   width: 100%;
 }
 
 .chipPrimary:hover {
   background: var(--chip-bg);
-  filter: brightness(1.4);
+  filter: brightness(1.35);
   border-color: var(--chip-color, var(--color-accent));
+  transform: translateX(2px);
 }
 
 .chipOpen {
@@ -113,7 +138,7 @@
 }
 
 .chipDesc p {
-  padding: 10px 14px;
+  padding: 12px 14px;
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   line-height: 1.6;
@@ -130,6 +155,7 @@
   gap: 8px;
   padding-top: 4px;
   border-top: 1px solid var(--color-border);
+  position: relative;
 }
 
 .chipExtra {
@@ -147,7 +173,7 @@
 .softTitle {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   margin-bottom: 16px;
@@ -164,12 +190,25 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  transition: transform var(--t-base), box-shadow var(--t-base);
+}
+
+.softCard:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 50px rgba(94, 158, 255, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .softName {
   font-size: var(--font-size-base);
   font-weight: 700;
-  color: var(--color-accent);
+  background: var(--aurora-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: auroraFlow 14s ease-in-out infinite;
 }
 
 .softDesc {

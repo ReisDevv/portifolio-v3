@@ -1,65 +1,105 @@
 :root {
-  /* Background */
-  --color-bg:               #080c0a;
-  --color-surface:          #0f1410;
-  --color-surface-elevated: #161d17;
+  /* ─── Background ───────────────────────────────────────
+     Apple-style "cosmic" dark — pure deep black, drifting
+     to very subtle elevated greys for surface layers.        */
+  --color-bg:               #000000;
+  --color-bg-soft:          #06060a;
+  --color-surface:          #0c0c10;
+  --color-surface-elevated: #15151b;
 
-  /* Borders */
-  --color-border:        rgba(255, 255, 255, 0.07);
-  --color-border-accent: rgba(0, 255, 136, 0.22);
+  /* ─── Borders ─────────────────────────────────────────── */
+  --color-border:        rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-border-accent: rgba(94, 158, 255, 0.28);
 
-  /* Accent */
-  --color-accent:      #00ff88;
-  --color-accent-dim:  rgba(0, 255, 136, 0.10);
-  --color-accent-glow: rgba(0, 255, 136, 0.30);
+  /* ─── Accent (Apple sky-blue) ─────────────────────────── */
+  --color-accent:       #5e9eff;            /* primary accent — soft Apple blue */
+  --color-accent-hover: #7eb3ff;
+  --color-accent-deep:  #2674e6;
+  --color-accent-dim:   rgba(94, 158, 255, 0.12);
+  --color-accent-glow:  rgba(94, 158, 255, 0.32);
+  --color-accent-ink:   #0a0d14;            /* readable text on accent buttons */
 
-  /* Text */
-  --color-text-primary:   #e8f0ea;
-  --color-text-secondary: rgba(232, 240, 234, 0.55);
-  --color-text-muted:     rgba(232, 240, 234, 0.30);
+  /* ─── Apple Vision Pro iridescent aurora ──────────────── */
+  --aurora-sky:      #5e9eff;
+  --aurora-lavender: #b18cff;
+  --aurora-pink:     #ff7eb9;
+  --aurora-peach:    #fab28a;
+  --aurora-cream:    #fff3e0;
 
-  /* Fluid typography */
-  --font-size-hero: clamp(52px, 8vw, 100px);
-  --font-size-h1:   clamp(36px, 5vw, 68px);
-  --font-size-h2:   clamp(28px, 3.5vw, 48px);
-  --font-size-h3:   clamp(20px, 2vw, 28px);
-  --font-size-lg:   clamp(17px, 1.5vw, 20px);
+  --aurora-gradient: linear-gradient(
+    135deg,
+    var(--aurora-sky)      0%,
+    var(--aurora-lavender) 35%,
+    var(--aurora-pink)     65%,
+    var(--aurora-peach)    100%
+  );
+
+  --aurora-soft: linear-gradient(
+    135deg,
+    rgba(94, 158, 255, 0.18)  0%,
+    rgba(177, 140, 255, 0.16) 40%,
+    rgba(255, 126, 185, 0.12) 75%,
+    rgba(250, 178, 138, 0.10) 100%
+  );
+
+  /* ─── Text ────────────────────────────────────────────── */
+  --color-text-primary:   #f5f5f7;                  /* Apple's signature off-white */
+  --color-text-secondary: rgba(245, 245, 247, 0.62);
+  --color-text-muted:     rgba(245, 245, 247, 0.34);
+  --color-text-faint:     rgba(245, 245, 247, 0.18);
+
+  /* ─── Fluid typography ────────────────────────────────── */
+  --font-size-hero: clamp(54px, 9vw, 112px);
+  --font-size-h1:   clamp(38px, 5.4vw, 72px);
+  --font-size-h2:   clamp(28px, 3.6vw, 52px);
+  --font-size-h3:   clamp(20px, 2vw, 30px);
+  --font-size-lg:   clamp(17px, 1.5vw, 21px);
   --font-size-base: 16px;
   --font-size-sm:   14px;
   --font-size-xs:   12px;
 
-  /* Layout */
+  /* ─── Layout ──────────────────────────────────────────── */
   --section-px: clamp(24px, 8vw, 120px);
   --section-py: clamp(60px, 10vh, 120px);
 
-  /* Border radius */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  /* ─── Border radius ───────────────────────────────────── */
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-2xl:  44px;
   --radius-full: 100px;
 
-  /* Glassmorphism */
-  --glass-bg:     rgba(255, 255, 255, 0.04);
-  --glass-blur:   blur(20px) saturate(180%);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+  /* ─── Glassmorphism (Apple "vibrancy") ─────────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.045);
+  --glass-blur:   blur(28px) saturate(180%);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.09);
 
-  /* Easing */
-  --ease-expo:    cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  /* ─── Easing ──────────────────────────────────────────── */
+  --ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo:  cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-apple:    cubic-bezier(0.22, 1, 0.36, 1);   /* Apple's signature ease-out */
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Transitions */
-  --t-fast:   200ms var(--ease-expo);
-  --t-base:   400ms var(--ease-expo);
-  --t-slow:   700ms var(--ease-expo);
+  /* ─── Transitions ─────────────────────────────────────── */
+  --t-fast:   220ms var(--ease-apple);
+  --t-base:   420ms var(--ease-apple);
+  --t-slow:   780ms var(--ease-apple);
+  --t-hero:   1100ms var(--ease-expo);
+
+  /* ─── Shadows (deep, layered like Apple cards) ─────────── */
+  --shadow-card:     0 8px 24px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  --shadow-lifted:   0 32px 80px rgba(0, 0, 0, 0.55), 0 2px 0 rgba(255, 255, 255, 0.08) inset;
+  --shadow-aurora:   0 24px 80px rgba(94, 158, 255, 0.18), 0 0 60px rgba(177, 140, 255, 0.10);
 }
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration:       0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration:      0.01ms !important;
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:       0.01ms !important;
   }
 }

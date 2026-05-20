@@ -6,23 +6,24 @@ import { GlassCard } from '@/components/ui/GlassCard'
 import { TiltCard } from '@/components/ui/TiltCard'
 import styles from './Projects.module.css'
 
+/* Apple-tuned language hues — softer, jewel-toned */
 const LANG_COLORS = {
-  'C#':         '#9b4dca',
-  'JavaScript': '#f1e05a',
-  'HTML':       '#e34c26',
-  'Java':       '#b07219',
-  'CSS':        '#563d7c',
-  'TypeScript': '#3178c6',
+  'C#':         '#b18cff',
+  'JavaScript': '#fab28a',
+  'HTML':       '#ff7eb9',
+  'Java':       '#fab28a',
+  'CSS':        '#7eb3ff',
+  'TypeScript': '#5e9eff',
 }
 
 const TAG_COLORS = {
-  'C#':         'rgba(155, 77, 202, 0.15)',
-  'JavaScript': 'rgba(241, 224, 90, 0.12)',
-  'HTML':       'rgba(227, 76, 38, 0.12)',
-  'Java':       'rgba(176, 114, 25, 0.12)',
-  'Node.js':    'rgba(104, 160, 99, 0.15)',
-  '.NET':       'rgba(89, 0, 204, 0.12)',
-  'WinForms':   'rgba(0, 120, 212, 0.12)',
+  'C#':         'rgba(177, 140, 255, 0.14)',
+  'JavaScript': 'rgba(250, 178, 138, 0.14)',
+  'HTML':       'rgba(255, 126, 185, 0.14)',
+  'Java':       'rgba(250, 178, 138, 0.12)',
+  'Node.js':    'rgba(94, 158, 255, 0.14)',
+  '.NET':       'rgba(177, 140, 255, 0.14)',
+  'WinForms':   'rgba(94, 158, 255, 0.14)',
   'default':    'rgba(255, 255, 255, 0.06)',
 }
 
@@ -54,10 +55,11 @@ function FeaturedCard({ item, viewRepo, eyebrow }) {
   return (
     <motion.div
       className={styles.featuredWrapper}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, y: 80, rotateX: 8, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+      style={{ transformStyle: 'preserve-3d' }}
     >
       <TiltCard className={styles.featuredTilt}>
         <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.featuredLink}>
@@ -138,10 +140,11 @@ function ProjectCard({ item, viewRepo, delay }) {
   return (
     <motion.div
       className={styles.cardWrapper}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 60, rotateX: 12, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay }}
+      style={{ transformStyle: 'preserve-3d' }}
     >
       <TiltCard className={styles.tiltOuter}>
         <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>

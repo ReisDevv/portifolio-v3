@@ -2,7 +2,6 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,8 +10,9 @@ const SAMPLE_STEP = 5
 const SPRING_STIFFNESS = 0.055
 const FRICTION = 0.84
 const CONVERGENCE_DURATION = 2200
-const ACCENT_COLOR = '#00ff88'
-const TEXT_COLOR = '#f0f0f5'
+const ACCENT_COLOR = '#5e9eff'
+const ACCENT_COLOR_2 = '#b18cff'
+const TEXT_COLOR = '#f5f5f7'
 
 class Particle {
   constructor(tx, ty, canvasW, canvasH) {
@@ -49,17 +49,15 @@ class Particle {
   draw(ctx) {
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-    ctx.fillStyle = this.isAccent
-      ? `rgba(0, 255, 136, ${this.alpha})`
-      : `rgba(232, 240, 234, ${this.alpha * 0.6})`
-    ctx.fill()
-
     if (this.isAccent) {
-      ctx.shadowBlur = 6
-      ctx.shadowColor = ACCENT_COLOR
-      ctx.fill()
-      ctx.shadowBlur = 0
+      // alternate between sky-blue & lavender for an iridescent look
+      const useSecondary = (this.targetX | 0) % 2 === 0
+      const c = useSecondary ? ACCENT_COLOR_2 : ACCENT_COLOR
+      ctx.fillStyle = `rgba(${c === ACCENT_COLOR ? '94, 158, 255' : '177, 140, 255'}, ${this.alpha})`
+    } else {
+      ctx.fillStyle = `rgba(245, 245, 247, ${this.alpha * 0.55})`
     }
+    ctx.fill()
   }
 }
 
@@ -104,8 +102,6 @@ export function HeroCanvas({ sectionRef }) {
     converged: false,
     startTime: null,
   })
-  const reduced = useReducedMotion()
-
   const buildParticles = useCallback((canvas) => {
     const dpr = window.devicePixelRatio || 1
     const w = canvas.offsetWidth
@@ -126,15 +122,6 @@ export function HeroCanvas({ sectionRef }) {
     stateRef.current.particles = particles
     return { ctx, w, h }
   }, [])
-
-  const drawStatic = useCallback((canvas) => {
-    const { ctx, w, h } = buildParticles(canvas)
-    stateRef.current.particles.forEach(p => {
-      p.x = p.targetX
-      p.y = p.targetY
-      p.draw(ctx)
-    })
-  }, [buildParticles])
 
   const startAnimation = useCallback((canvas) => {
     const { ctx, w, h } = buildParticles(canvas)
@@ -184,11 +171,6 @@ export function HeroCanvas({ sectionRef }) {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-
-    if (reduced) {
-      drawStatic(canvas)
-      return
-    }
 
     startAnimation(canvas)
 
@@ -240,7 +222,7 @@ export function HeroCanvas({ sectionRef }) {
       window.removeEventListener('resize', onResize)
       clearTimeout(resizeTimer)
     }
-  }, [reduced, startAnimation, drawStatic, sectionRef])
+  }, [startAnimation, sectionRef])
 
   return (
     <canvas

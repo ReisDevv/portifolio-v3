@@ -7,30 +7,32 @@ import styles from './AuroraOrbs.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/* Apple Vision Pro-style iridescent aurora — sky blue, lavender,
+   pink and peach orbs drifting in parallax. */
 const ORBS = [
   {
+    size: 720,
+    x: '-12%', y: '0%',
+    color: 'radial-gradient(ellipse, rgba(94,158,255,0.32) 0%, transparent 65%)',
+    duration: 20, xRange: 70, yRange: 40,
+  },
+  {
+    size: 560,
+    x: '58%', y: '-18%',
+    color: 'radial-gradient(ellipse, rgba(177,140,255,0.26) 0%, transparent 68%)',
+    duration: 24, xRange: -50, yRange: 60,
+  },
+  {
     size: 600,
-    x: '-10%', y: '5%',
-    color: 'radial-gradient(ellipse, rgba(0,255,136,0.18) 0%, transparent 70%)',
-    duration: 18, xRange: 60, yRange: 40,
+    x: '72%', y: '48%',
+    color: 'radial-gradient(ellipse, rgba(255,126,185,0.20) 0%, transparent 65%)',
+    duration: 28, xRange: -60, yRange: -30,
   },
   {
-    size: 480,
-    x: '55%', y: '-15%',
-    color: 'radial-gradient(ellipse, rgba(0,200,100,0.12) 0%, transparent 70%)',
-    duration: 22, xRange: -40, yRange: 55,
-  },
-  {
-    size: 520,
-    x: '70%', y: '45%',
-    color: 'radial-gradient(ellipse, rgba(0,255,160,0.10) 0%, transparent 65%)',
-    duration: 26, xRange: -50, yRange: -30,
-  },
-  {
-    size: 340,
-    x: '20%', y: '60%',
-    color: 'radial-gradient(ellipse, rgba(80,255,180,0.08) 0%, transparent 70%)',
-    duration: 20, xRange: 35, yRange: -45,
+    size: 420,
+    x: '18%', y: '62%',
+    color: 'radial-gradient(ellipse, rgba(250,178,138,0.18) 0%, transparent 70%)',
+    duration: 22, xRange: 45, yRange: -50,
   },
 ]
 
@@ -39,7 +41,7 @@ export function AuroraOrbs({ sectionRef }) {
   const reduced = useReducedMotion()
 
   useEffect(() => {
-    if (reduced) return
+    if (reduced) return  // skip GSAP loops, but the orbs are still rendered below
     const els = orbsRef.current.filter(Boolean)
 
     els.forEach((el, i) => {
@@ -69,8 +71,6 @@ export function AuroraOrbs({ sectionRef }) {
 
     return () => trigger.kill()
   }, [reduced, sectionRef])
-
-  if (reduced) return null
 
   return (
     <div className={styles.container} aria-hidden="true">

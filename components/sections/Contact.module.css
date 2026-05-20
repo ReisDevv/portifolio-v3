@@ -1,6 +1,20 @@
 .section {
   padding: var(--section-py) var(--section-px);
   padding-bottom: calc(var(--section-py) * 1.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Apple-style aurora glow behind contact heading */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(94, 158, 255, 0.10), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 20%, rgba(177, 140, 255, 0.06), transparent 70%);
+  pointer-events: none;
+  animation: auroraDrift 22s ease-in-out infinite;
 }
 
 .inner {
@@ -11,22 +25,28 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  position: relative;
 }
 
 .eyebrow {
   font-size: var(--font-size-xs);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  background: var(--aurora-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: auroraFlow 12s ease-in-out infinite;
 }
 
 .headline {
   font-size: var(--font-size-h1);
   font-weight: 800;
   color: var(--color-text-primary);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
 }
 
 .cards {
@@ -36,6 +56,7 @@
   flex-wrap: wrap;
   margin-top: 16px;
   width: 100%;
+  perspective: 1200px;
 }
 
 .cardLink {
@@ -47,30 +68,38 @@
 }
 
 .card {
-  padding: 24px 20px;
+  padding: 26px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
   height: 100%;
   text-align: center;
-  transition: box-shadow var(--t-base);
+  transition: box-shadow var(--t-base), border-color var(--t-base);
 }
 
 .card:hover {
-  box-shadow: 0 20px 48px rgba(0, 255, 136, 0.10);
+  box-shadow:
+    0 24px 56px rgba(94, 158, 255, 0.18),
+    0 0 30px rgba(177, 140, 255, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
 .icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: var(--color-accent-dim);
-  border: 1px solid var(--color-border-accent);
+  width: 52px;
+  height: 52px;
+  background:
+    linear-gradient(135deg,
+      rgba(94, 158, 255, 0.18) 0%,
+      rgba(177, 140, 255, 0.12) 100%
+    );
+  border: 1px solid rgba(94, 158, 255, 0.28);
   border-radius: var(--radius-md);
   color: var(--color-accent);
+  box-shadow: 0 8px 20px rgba(94, 158, 255, 0.18);
 }
 
 .cardText {

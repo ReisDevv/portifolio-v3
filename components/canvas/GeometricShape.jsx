@@ -9,10 +9,16 @@ export function GeometricShape() {
   const reduced = useReducedMotion()
 
   useEffect(() => {
-    if (reduced || !wrapRef.current) return
+    if (!wrapRef.current) return
     const el = wrapRef.current
 
-    // continuous slow rotation
+    if (reduced) {
+      // Honor reduced-motion but keep the cube on screen at a static
+      // 3-quarter angle so the page still has visual depth.
+      gsap.set(el, { rotateY: 28, rotateX: 14 })
+      return
+    }
+
     gsap.to(el, {
       rotateY: 360,
       duration: 28,
@@ -28,7 +34,6 @@ export function GeometricShape() {
       ease: 'sine.inOut',
     })
 
-    // float up/down
     gsap.to(el.parentElement, {
       y: -24,
       duration: 6,
@@ -37,8 +42,6 @@ export function GeometricShape() {
       ease: 'sine.inOut',
     })
   }, [reduced])
-
-  if (reduced) return null
 
   return (
     <div className={styles.scene} aria-hidden="true">

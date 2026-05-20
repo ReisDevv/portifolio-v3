@@ -11,17 +11,16 @@
   align-items: start;
 }
 
-/* ── Left: chatbot ───────────────────────────────────── */
 .chatCol {
   position: sticky;
   top: 100px;
+  perspective: 1400px;
 }
 
 .chatWrapper {
   width: 100%;
 }
 
-/* ── Right: text + stats ─────────────────────────────── */
 .textCol {
   padding-top: 8px;
   display: flex;
@@ -40,36 +39,50 @@
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
   line-height: 1.75;
+  letter-spacing: -0.005em;
 }
 
-/* ── Stats row ───────────────────────────────────────── */
+/* Stats — Apple style, gradient on numbers */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-top: 40px;
+  perspective: 1200px;
 }
 
 .stat {
-  padding: 18px 16px;
+  padding: 20px 16px;
   background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   text-align: center;
+  transition: transform var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(94, 158, 255, 0.25);
+  box-shadow: 0 16px 40px rgba(94, 158, 255, 0.12);
 }
 
 .statValue {
   font-size: var(--font-size-h3);
   font-weight: 800;
-  color: var(--color-accent);
+  background: var(--aurora-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
+  animation: auroraFlow 14s ease-in-out infinite;
 }
 
 .statLabel {

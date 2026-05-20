@@ -10,9 +10,14 @@
   display: block;
   font-size: var(--font-size-xs);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  background: var(--aurora-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: auroraFlow 12s ease-in-out infinite;
   margin-bottom: 12px;
 }
 
@@ -20,5 +25,6 @@
   font-size: var(--font-size-h2);
   font-weight: 700;
   color: var(--color-text-primary);
-  line-height: 1.15;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
 }

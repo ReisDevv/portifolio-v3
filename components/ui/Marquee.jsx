@@ -1,4 +1,6 @@
 'use client'
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 import styles from './Marquee.module.css'
 
 const SKILLS = [
@@ -12,11 +14,32 @@ const SKILLS = [
 ]
 
 export function Marquee() {
+  const trackRef = useRef(null)
+  const tweenRef = useRef(null)
   const repeated = [...SKILLS, ...SKILLS]
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    tweenRef.current = gsap.to(track, {
+      xPercent: -50,
+      duration: 38,
+      repeat: -1,
+      ease: 'none',
+    })
+
+    return () => tweenRef.current?.kill()
+  }, [])
 
   return (
     <div className={styles.outer} aria-hidden="true">
-      <div className={styles.track}>
+      <div
+        ref={trackRef}
+        className={styles.track}
+        onMouseEnter={() => tweenRef.current?.pause()}
+        onMouseLeave={() => tweenRef.current?.play()}
+      >
         {repeated.map((skill, i) => (
           <span key={i} className={styles.item}>
             <span className={styles.gem}>◆</span>

@@ -2,20 +2,21 @@
   height: 200vh;
 }
 
-/* Apple-style dot grid background */
+/* Apple-style soft dot grid */
 .dotGrid {
   position: absolute;
   inset: 0;
   z-index: 0;
   background-image: radial-gradient(
     circle,
-    rgba(0, 255, 136, 0.12) 1px,
+    rgba(245, 245, 247, 0.10) 1px,
     transparent 1px
   );
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 25%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 25%, transparent 100%);
   pointer-events: none;
+  opacity: 0.7;
 }
 
 .sticky {
@@ -36,34 +37,39 @@
   align-items: center;
   text-align: center;
   padding: 0 var(--section-px);
-  gap: 20px;
-  max-width: 960px;
+  gap: 22px;
+  max-width: 980px;
 }
 
 .eyebrow {
   font-size: var(--font-size-xs);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-.title {
-  font-size: var(--font-size-hero);
-  font-weight: 900;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--color-text-primary);
-  background: linear-gradient(
-    135deg,
-    #e8f0ea 0%,
-    rgba(0, 255, 136, 0.9) 50%,
-    #e8f0ea 100%
-  );
+  background: var(--aurora-gradient);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: auroraFlow 10s ease-in-out infinite;
+}
+
+.title {
+  font-size: var(--font-size-hero);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: var(--color-text-primary);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(245, 245, 247, 0.88) 60%,
+    rgba(245, 245, 247, 0.65) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 24px rgba(94, 158, 255, 0.15));
 }
 
 .scramble {
@@ -78,6 +84,7 @@
   display: flex;
   align-items: center;
   gap: 2px;
+  letter-spacing: -0.005em;
 }
 
 .cursor {
@@ -88,36 +95,11 @@
   margin-left: 4px;
   vertical-align: text-bottom;
   animation: blink 1s step-end infinite;
+  box-shadow: 0 0 8px var(--color-accent-glow);
 }
 
 .cta {
-  margin-top: 8px;
-}
-
-.scrollHint {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.scrollLine {
-  display: block;
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--color-accent), transparent);
-  animation: bounceDown 2s ease-in-out infinite;
-}
-
-.scrollText {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  margin-top: 10px;
 }
 
 .bottomFade {
@@ -125,13 +107,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 160px;
-  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  height: 220px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg) 85%);
   pointer-events: none;
   z-index: 2;
 }
 
 @media (max-width: 640px) {
-  .title { letter-spacing: -0.02em; }
-  .scrollHint { bottom: 24px; }
+  .title { letter-spacing: -0.025em; }
 }

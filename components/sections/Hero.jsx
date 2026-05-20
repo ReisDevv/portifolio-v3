@@ -18,12 +18,7 @@ const containerVariants = {
 const itemVariants = {
   hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
   show:   { opacity: 1, y: 0,  filter: 'blur(0px)',
-            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-}
-
-const letterVariants = {
-  hidden: { opacity: 0, y: 60 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
 }
 
 function ScrambleTitle({ text, reduced }) {
@@ -84,11 +79,6 @@ export function Hero() {
             >
               {t.hero.cta}
             </button>
-          </motion.div>
-
-          <motion.div className={styles.scrollHint} variants={itemVariants}>
-            <span className={styles.scrollLine} />
-            <span className={styles.scrollText}>{t.hero.scrollHint}</span>
           </motion.div>
         </motion.div>
 

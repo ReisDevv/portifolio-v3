@@ -11,7 +11,7 @@ const GROUPS = [
   {
     key: 'backend',
     label: { pt: 'Backend Core', en: 'Backend Core' },
-    color: '#00ff88',
+    color: '#5e9eff',                  /* sky blue */
     gridArea: 'backend',
     primary: ['C#', 'ASP.NET / Legacy ASP', 'Java', 'Entity Framework', 'LINQ'],
     extras: ['Clean Architecture', 'MVC', 'Web API REST'],
@@ -19,7 +19,7 @@ const GROUPS = [
   {
     key: 'database',
     label: { pt: 'Banco de Dados', en: 'Database' },
-    color: '#7dd3fc',
+    color: '#b18cff',                  /* lavender */
     gridArea: 'database',
     primary: ['SQL Server', 'MySQL / PostgreSQL'],
     extras: ['T-SQL', 'Stored Procedures'],
@@ -27,7 +27,7 @@ const GROUPS = [
   {
     key: 'cloud',
     label: { pt: 'Cloud & DevOps', en: 'Cloud & DevOps' },
-    color: '#a78bfa',
+    color: '#ff7eb9',                  /* pink */
     gridArea: 'cloud',
     primary: ['Azure', 'Docker', 'Git'],
     extras: ['CI/CD', 'Linux'],
@@ -35,7 +35,7 @@ const GROUPS = [
   {
     key: 'frontend',
     label: { pt: 'Frontend & Web', en: 'Frontend & Web' },
-    color: '#fbbf24',
+    color: '#fab28a',                  /* peach */
     gridArea: 'frontend',
     primary: ['JavaScript / TypeScript'],
     extras: ['React', 'Next.js', 'Node.js', 'HTML/CSS', 'WinForms'],
@@ -43,8 +43,11 @@ const GROUPS = [
 ]
 
 const softCardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+  hidden: { opacity: 0, y: 50, rotateX: 10, scale: 0.94 },
+  show:   {
+    opacity: 1, y: 0, rotateX: 0, scale: 1,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
 }
 
 function SkillChip({ name, description, color, isPrimary }) {
@@ -88,10 +91,11 @@ function CategoryCard({ group, allItems, lang }) {
   return (
     <motion.div
       className={`${styles.catCard} ${styles[group.key]}`}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 70, rotateX: 14, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      style={{ transformStyle: 'preserve-3d' }}
     >
       <GlassCard className={styles.catInner}>
         {/* Header */}

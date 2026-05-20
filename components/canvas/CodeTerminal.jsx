@@ -24,8 +24,15 @@ export function CodeTerminal() {
   const reduced = useReducedMotion()
 
   useEffect(() => {
-    if (reduced || !wrapRef.current) return
+    if (!wrapRef.current) return
     const el = wrapRef.current
+
+    if (reduced) {
+      // Honor reduced-motion but still SHOW the terminal — just no entrance
+      // or floating loop. Set final state immediately.
+      gsap.set(el, { opacity: 1, x: 0, y: 0 })
+      return
+    }
 
     gsap.fromTo(
       el,
@@ -42,8 +49,6 @@ export function CodeTerminal() {
       delay: 1.8,
     })
   }, [reduced])
-
-  if (reduced) return null
 
   return (
     <div ref={wrapRef} className={styles.terminal} aria-hidden="true" style={{ opacity: 0 }}>

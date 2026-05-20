@@ -15,7 +15,9 @@ export function SpotlightText({ textPt, textEn }) {
   const text = lang === 'pt' ? textPt : textEn
 
   useEffect(() => {
-    if (reduced || !sectionRef.current) return
+    if (!sectionRef.current) return
+    // Scroll-driven opacity is not vestibular motion — run it even when
+    // prefers-reduced-motion is set, so the lighting effect still works.
 
     const wordEls = sectionRef.current.querySelectorAll('[data-word]')
 

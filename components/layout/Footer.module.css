@@ -1,7 +1,28 @@
 .footer {
   border-top: 1px solid var(--color-border);
   padding: 60px var(--section-px) 32px;
-  background: var(--color-bg);
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(94, 158, 255, 0.03) 50%,
+    var(--color-bg) 100%
+  );
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(60%, 600px);
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(94, 158, 255, 0.45),
+    rgba(177, 140, 255, 0.35),
+    transparent
+  );
 }
 
 .inner {
@@ -23,8 +44,13 @@
 .logo {
   font-size: 24px;
   font-weight: 900;
-  color: var(--color-accent);
+  background: var(--aurora-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: -0.03em;
+  animation: auroraFlow 12s ease-in-out infinite;
 }
 
 .name {

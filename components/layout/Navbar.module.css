@@ -7,38 +7,42 @@
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: rgba(8, 12, 10, 0.75);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(12, 12, 16, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-full);
   z-index: 1000;
-  transition: border-color 0.3s ease, background 0.3s ease;
+  transition: border-color 0.4s var(--ease-apple), background 0.4s var(--ease-apple), padding 0.4s var(--ease-apple);
   white-space: nowrap;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 .scrolled {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(8, 12, 10, 0.95);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(8, 8, 12, 0.78);
+  padding: 8px 18px;
 }
 
 .logo {
   font-size: 17px;
   font-weight: 900;
-  color: var(--color-accent);
+  background: var(--aurora-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: -0.02em;
-  background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: var(--radius-sm);
   transition: var(--t-fast);
   font-family: inherit;
+  animation: auroraFlow 10s ease-in-out infinite;
 }
 
-.logo:hover {
-  background: var(--color-accent-dim);
-}
+.logo:hover { transform: scale(1.05); }
 
 .links {
   display: flex;
@@ -62,7 +66,7 @@
 
 .link:hover {
   color: var(--color-text-primary);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .actions {
@@ -74,7 +78,7 @@
 .langToggle {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
   padding: 3px;
@@ -101,8 +105,10 @@
 }
 
 .langActive {
-  background: var(--color-accent);
-  color: #080c0a;
+  background: var(--aurora-gradient);
+  background-size: 200% 200%;
+  color: var(--color-accent-ink);
+  box-shadow: 0 2px 8px rgba(94, 158, 255, 0.4);
 }
 
 .hamburger {
@@ -124,7 +130,7 @@
   width: 20px;
   background: var(--color-text-primary);
   border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.3s var(--ease-apple), opacity 0.3s var(--ease-apple);
   transform-origin: center;
 }
 
@@ -132,14 +138,13 @@
 .barOpen2 { opacity: 0; }
 .barOpen3 { transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile menu overlay */
 .mobileMenu {
   position: fixed;
   inset: 0;
   z-index: 999;
-  background: rgba(8, 12, 10, 0.97);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,7 +167,7 @@
   font-weight: 600;
   color: var(--color-text-primary);
   padding: 16px 32px;
-  transition: color 0.2s ease;
+  transition: color 0.2s var(--ease-apple);
 }
 
 .mobileLink:hover { color: var(--color-accent); }
@@ -193,8 +198,8 @@
 }
 
 .mobileLangActive {
-  background: var(--color-accent);
-  color: #080c0a;
+  background: var(--aurora-gradient);
+  color: var(--color-accent-ink);
 }
 
 @media (max-width: 768px) {

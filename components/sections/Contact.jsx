@@ -26,8 +26,11 @@ const ICONS = {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+  hidden: { opacity: 0, y: 50, rotateX: 12, scale: 0.94 },
+  show:   {
+    opacity: 1, y: 0, rotateX: 0, scale: 1,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
 }
 
 const containerVariants = {
@@ -65,7 +68,7 @@ export function Contact() {
               rel="noopener noreferrer"
               className={styles.cardLink}
               variants={cardVariants}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
             >
               <GlassCard className={styles.card}>
                 <span className={styles.icon}>{ICONS[item.icon]}</span>

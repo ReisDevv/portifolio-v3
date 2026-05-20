@@ -5,6 +5,11 @@ import { useLanguage } from '@/context/LanguageContext'
 import { chatbotData } from '@/data/chatbot'
 import styles from './ChatBot.module.css'
 
+/* Track if the user has interacted with the chatbot at least once.
+   Until then, do not auto-scroll the messages container — otherwise the
+   initial greeting on mount steals the page-load scroll position from
+   the Hero on browsers that bubble scroll requests up the ancestor chain. */
+
 function TypingIndicator() {
   return (
     <motion.div
@@ -28,8 +33,9 @@ export function ChatBot() {
   const [messages, setMessages] = useState([])
   const [asked, setAsked]       = useState(new Set())
   const [typing, setTyping]     = useState(false)
-  const endRef                  = useRef(null)
+  const messagesRef             = useRef(null)
   const timerRef                = useRef(null)
+  const interactedRef           = useRef(false)
 
   // Reset on lang change
   useEffect(() => {
@@ -39,14 +45,20 @@ export function ChatBot() {
     setTyping(false)
   }, [lang, data.greeting])
 
-  // Auto-scroll to latest message
+  // Auto-scroll the messages container only — never the whole page.
+  // Skip until the user has actually interacted, so the page-load Hero
+  // is not scrolled past by the chatbot's greeting auto-scroll.
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (!interactedRef.current) return
+    const el = messagesRef.current
+    if (!el) return
+    el.scrollTop = el.scrollHeight
   }, [messages, typing])
 
   const handleQuestion = (item) => {
     if (typing || asked.has(item.q)) return
 
+    interactedRef.current = true
     setAsked(prev => new Set([...prev, item.q]))
     setMessages(prev => [
       ...prev,
@@ -80,7 +92,7 @@ export function ChatBot() {
       </div>
 
       {/* Messages */}
-      <div className={styles.messages}>
+      <div ref={messagesRef} className={styles.messages}>
         <AnimatePresence initial={false}>
           {messages.map(msg => (
             <motion.div
@@ -95,7 +107,6 @@ export function ChatBot() {
           ))}
           {typing && <TypingIndicator key="typing" />}
         </AnimatePresence>
-        <div ref={endRef} />
       </div>
 
       {/* Question chips */}

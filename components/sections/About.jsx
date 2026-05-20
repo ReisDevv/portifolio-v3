@@ -54,10 +54,11 @@ function StatItem({ value, label }) {
     <motion.div
       ref={ref}
       className={styles.stat}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 30, rotateX: 18, scale: 0.92 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      style={{ transformStyle: 'preserve-3d' }}
     >
       <span className={styles.statValue}>{display}</span>
       <span className={styles.statLabel}>{label}</span>
@@ -77,10 +78,11 @@ export function About() {
         <div className={styles.chatCol}>
           <motion.div
             className={styles.chatWrapper}
-            initial={{ opacity: 0, x: -32 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -48, rotateY: 8 }}
+            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ transformStyle: 'preserve-3d', transformOrigin: 'left center' }}
           >
             <ChatBot />
           </motion.div>
