@@ -61,7 +61,7 @@ export function Footer() {
       </div>
 
       <div className={styles.bottom}>
-        <span>© {year} Nelson Reis. Todos os direitos reservados.</span>
+        <span>© {year} Nelson Reis. {t.footer.rights}</span>
       </div>
     </footer>
   )

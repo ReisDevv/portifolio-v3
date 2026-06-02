@@ -1,4 +1,5 @@
 'use client'
+import { MotionConfig } from 'framer-motion'
 import { LanguageProvider } from '@/context/LanguageContext'
 import { useLenis } from '@/hooks/useLenis'
 import { CustomCursor } from '@/components/ui/CustomCursor'
@@ -12,10 +13,16 @@ function LenisInit() {
 export function Providers({ children }) {
   return (
     <LanguageProvider>
-      <LenisInit />
-      <ScrollProgress />
-      <CustomCursor />
-      {children}
+      {/* reducedMotion="user" lets Framer Motion automatically strip
+          transform-based animation (x/y/scale/rotate) for visitors who set
+          prefers-reduced-motion, keeping only opacity — applied across every
+          motion component without per-component branching. */}
+      <MotionConfig reducedMotion="user">
+        <LenisInit />
+        <ScrollProgress />
+        <CustomCursor />
+        {children}
+      </MotionConfig>
     </LanguageProvider>
   )
 }

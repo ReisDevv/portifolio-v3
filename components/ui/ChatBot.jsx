@@ -10,6 +10,12 @@ import styles from './ChatBot.module.css'
    initial greeting on mount steals the page-load scroll position from
    the Hero on browsers that bubble scroll requests up the ancestor chain. */
 
+/* Random reply latency, kept out of any component so the linter can see
+   it is never evaluated during render. */
+function replyDelay() {
+  return 700 + Math.random() * 500
+}
+
 function TypingIndicator() {
   return (
     <motion.div
@@ -30,20 +36,20 @@ export function ChatBot() {
   const { lang } = useLanguage()
   const data = chatbotData[lang]
 
-  const [messages, setMessages] = useState([])
-  const [asked, setAsked]       = useState(new Set())
+  // The component is remounted via key={lang} from the parent on language
+  // change, so initial state can derive directly from `data` — no reset
+  // effect (and no setState-in-effect) needed.
+  const [messages, setMessages] = useState(() => [
+    { id: 'greeting', type: 'bot', text: data.greeting },
+  ])
+  const [asked, setAsked]       = useState(() => new Set())
   const [typing, setTyping]     = useState(false)
   const messagesRef             = useRef(null)
   const timerRef                = useRef(null)
   const interactedRef           = useRef(false)
 
-  // Reset on lang change
-  useEffect(() => {
-    clearTimeout(timerRef.current)
-    setMessages([{ id: 'greeting', type: 'bot', text: data.greeting }])
-    setAsked(new Set())
-    setTyping(false)
-  }, [lang, data.greeting])
+  // Clear any pending bot reply timer on unmount.
+  useEffect(() => () => clearTimeout(timerRef.current), [])
 
   // Auto-scroll the messages container only — never the whole page.
   // Skip until the user has actually interacted, so the page-load Hero
@@ -66,14 +72,13 @@ export function ChatBot() {
     ])
     setTyping(true)
 
-    const delay = 700 + Math.random() * 500
     timerRef.current = setTimeout(() => {
       setMessages(prev => [
         ...prev,
         { id: `b-${Date.now()}`, type: 'bot', text: item.a },
       ])
       setTyping(false)
-    }, delay)
+    }, replyDelay())
   }
 
   return (

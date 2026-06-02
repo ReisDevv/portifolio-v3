@@ -8,7 +8,20 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function useLenis() {
   useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true })
+    // Respect prefers-reduced-motion: skip smooth scroll hijacking entirely
+    // so the browser's native (instant) scrolling is preserved.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      // Gentle ease-out so momentum settles smoothly instead of snapping.
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+    })
 
     lenis.on('scroll', ScrollTrigger.update)
 

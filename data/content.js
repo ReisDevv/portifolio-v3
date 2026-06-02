@@ -10,7 +10,7 @@ export const content = {
     hero: {
       eyebrow: 'Backend Developer @ PRODAM',
       title: 'Nelson Reis',
-      subtitle: 'Desenvolvedor BackEnd',
+      subtitle: 'Desenvolvedor Backend',
       cta: 'Sobre Mim',
       scrollHint: 'Role para baixo',
     },
@@ -173,6 +173,7 @@ export const content = {
     },
     footer: {
       role: 'Backend Developer',
+      rights: 'Todos os direitos reservados.',
       nav: {
         about: 'Sobre',
         projects: 'Projetos',
@@ -358,6 +359,7 @@ export const content = {
     },
     footer: {
       role: 'Backend Developer',
+      rights: 'All rights reserved.',
       nav: {
         about: 'About',
         projects: 'Projects',

@@ -13,8 +13,8 @@ export default function Home() {
       <About />
 
       <SpotlightText
-        textPt="Backend sólido é a base de qualquer produto digital que funciona de verdade."
-        textEn="Solid backend is the foundation of any digital product that truly works."
+        textPt="Por trás de cada interface fluida existe um backend que não pode falhar."
+        textEn="Behind every seamless interface is a backend that simply cannot fail."
       />
 
       <Projects />

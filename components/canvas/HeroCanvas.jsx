@@ -172,6 +172,8 @@ export function HeroCanvas({ sectionRef }) {
     const canvas = canvasRef.current
     if (!canvas) return
 
+    const state = stateRef.current
+
     startAnimation(canvas)
 
     // ScrollTrigger for scatter on scroll
@@ -217,7 +219,7 @@ export function HeroCanvas({ sectionRef }) {
     window.addEventListener('resize', onResize)
 
     return () => {
-      cancelAnimationFrame(stateRef.current.rafId)
+      cancelAnimationFrame(state.rafId)
       trigger.kill()
       window.removeEventListener('resize', onResize)
       clearTimeout(resizeTimer)

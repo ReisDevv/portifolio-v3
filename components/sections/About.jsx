@@ -67,7 +67,7 @@ function StatItem({ value, label }) {
 }
 
 export function About() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const { about } = t
 
   return (
@@ -84,7 +84,7 @@ export function About() {
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformStyle: 'preserve-3d', transformOrigin: 'left center' }}
           >
-            <ChatBot />
+            <ChatBot key={lang} />
           </motion.div>
         </div>
 

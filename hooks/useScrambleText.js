@@ -4,17 +4,18 @@ import { useState, useEffect, useRef } from 'react'
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789<>{}[]|/\\'
 
 export function useScrambleText(text, { delay = 0, duration = 1200, reduced = false } = {}) {
-  const [display, setDisplay] = useState(reduced ? text : '')
+  // When reduced motion is on, never animate — return the final text as-is.
+  // No state or effect is involved on that path, so there is no cascading
+  // render and no setState-in-effect.
+  const [display, setDisplay] = useState('')
   const frameRef = useRef(null)
 
   useEffect(() => {
-    if (reduced) { setDisplay(text); return }
+    if (reduced) return
 
     let startTime = null
-    let started = false
 
     const delayTimer = setTimeout(() => {
-      started = true
       const animate = (now) => {
         if (!startTime) startTime = now
         const elapsed = now - startTime
@@ -47,5 +48,5 @@ export function useScrambleText(text, { delay = 0, duration = 1200, reduced = fa
     }
   }, [text, delay, duration, reduced])
 
-  return display
+  return reduced ? text : display
 }

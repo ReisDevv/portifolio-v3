@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 import styles from './Marquee.module.css'
 
 const SKILLS = [
@@ -16,9 +17,13 @@ const SKILLS = [
 export function Marquee() {
   const trackRef = useRef(null)
   const tweenRef = useRef(null)
+  const reduced  = useReducedMotion()
   const repeated = [...SKILLS, ...SKILLS]
 
   useEffect(() => {
+    // A continuously scrolling strip is vestibular motion — skip the loop
+    // entirely when the user prefers reduced motion.
+    if (reduced) return
     const track = trackRef.current
     if (!track) return
 
@@ -30,7 +35,7 @@ export function Marquee() {
     })
 
     return () => tweenRef.current?.kill()
-  }, [])
+  }, [reduced])
 
   return (
     <div className={styles.outer} aria-hidden="true">
