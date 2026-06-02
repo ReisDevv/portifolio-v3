@@ -1,245 +1,114 @@
 .section {
-  padding: var(--section-py) var(--section-px);
+  max-width: var(--content-max);
+  margin: 0 auto;
 }
 
-/* ── Category bento grid ─────────────────────────────── */
-.catGrid {
+/* ── Category bento ───────────────────────────────────── */
+.grid {
   display: grid;
-  grid-template-columns: 6fr 4fr;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "backend  database"
-    "cloud    frontend";
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
 }
 
-.catCard {
-  min-width: 0;
-}
-
-.backend  { grid-area: backend; }
-.database { grid-area: database; }
-.cloud    { grid-area: cloud; }
-.frontend { grid-area: frontend; }
-
-.catInner {
-  padding: 30px 30px 34px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
+.cat {
   position: relative;
+  padding: 28px 28px 30px;
+  border-radius: var(--radius-lg);
+  border: var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   overflow: hidden;
-  transition: box-shadow var(--t-base), transform var(--t-base);
+  transition: border-color var(--t-base), transform var(--t-base);
 }
 
-/* Per-category tinted wash, driven by --cat-color set inline */
-.catInner::before {
+.cat::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 90% 70% at 0% 0%,
-    color-mix(in srgb, var(--cat-color, var(--color-accent)) 14%, transparent),
-    transparent 60%
-  );
-  opacity: 0.5;
+  background: radial-gradient(ellipse 70% 60% at 0% 0%, rgba(204, 255, 0, 0.06), transparent 60%);
+  opacity: 0;
   transition: opacity var(--t-base);
   pointer-events: none;
 }
 
-.catCard:hover .catInner {
+.cat:hover {
   transform: translateY(-4px);
-  box-shadow:
-    0 28px 70px color-mix(in srgb, var(--cat-color, var(--color-accent)) 16%, transparent),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  border-color: var(--color-border-accent);
 }
 
-.catCard:hover .catInner::before { opacity: 1; }
+.cat:hover::before { opacity: 1; }
 
-.catHeader {
+/* Backend spans full width as the lead category */
+.backend { grid-column: span 2; }
+
+.catHead {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 14px;
-  position: relative;
+  margin-bottom: 22px;
 }
 
-/* Glowing rounded badge with the category glyph */
-.catBadge {
+.badge {
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
   border-radius: 13px;
+  font-family: var(--font-mono);
   font-size: 15px;
   font-weight: 700;
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--color-accent-ink);
+  background: var(--color-accent);
   flex-shrink: 0;
-  background: linear-gradient(
-    140deg,
-    color-mix(in srgb, var(--cat-color) 55%, transparent),
-    color-mix(in srgb, var(--cat-color) 22%, transparent)
-  );
-  border: 1px solid color-mix(in srgb, var(--cat-color) 45%, transparent);
-  box-shadow:
-    0 0 18px color-mix(in srgb, var(--cat-color) 40%, transparent),
-    inset 0 1px 0 rgba(255, 255, 255, 0.30);
-}
-
-.catDot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(204, 255, 0, 0.30);
 }
 
 .catLabel {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-h3);
   font-weight: 700;
-  letter-spacing: -0.01em;
-  text-transform: none;
-}
-
-/* ── Primary skill chips ─────────────────────────────── */
-.primarySkills {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-}
-
-.chipWrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: none;
-  border: 1px solid transparent;
-  border-radius: var(--radius-md);
-  font-family: inherit;
-  cursor: default;
-  text-align: left;
-  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-  padding: 0;
-}
-
-.chipPrimary {
-  font-size: var(--font-size-base);
-  font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--color-text-primary);
-  padding: 12px 16px;
-  cursor: pointer;
-  background: var(--chip-bg, rgba(94, 158, 255, 0.08));
-  border-color: var(--chip-border, rgba(94, 158, 255, 0.18));
-  border-radius: var(--radius-md);
-  width: 100%;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
-.chipPrimary:hover {
-  background: var(--chip-bg);
-  border-color: var(--chip-color, var(--color-accent));
-  transform: translateX(3px);
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--chip-color, var(--color-accent)) 22%, transparent);
-}
-
-/* Trailing "expand" affordance only when a description exists */
-.chipPrimary[aria-expanded] {
-  justify-content: space-between;
-}
-
-.chipOpen {
-  border-color: var(--chip-color, var(--color-accent)) !important;
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--chip-color, var(--color-accent)) 22%, transparent) !important;
-}
-
-.chipLabel {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.chevron {
-  font-size: 11px;
-  color: var(--color-text-muted);
-  transition: transform var(--t-fast);
-}
-
-.chipOpen .chevron {
-  transform: rotate(180deg);
-  color: var(--chip-color, var(--color-accent));
-}
-
-.chipDot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  box-shadow: 0 0 8px 1px currentColor;
-}
-
-.chipDesc {
-  overflow: hidden;
-}
-
-.chipDesc p {
-  margin-top: 4px;
-  padding: 14px 16px;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  line-height: 1.65;
-  background: rgba(255, 255, 255, 0.035);
-  border: var(--glass-border);
-  border-radius: var(--radius-md);
-}
-
-/* ── Extra skill chips ───────────────────────────────── */
-.extraSkills {
+.skillList {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 18px;
-  margin-top: 4px;
-  border-top: 1px solid var(--color-border);
-  position: relative;
+  gap: 9px;
 }
 
-.chipExtra {
+.skill {
   font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--color-text-secondary);
-  padding: 7px 14px;
+  padding: 9px 16px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.05);
-  border: var(--glass-border);
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.03);
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast), transform var(--t-fast);
   cursor: default;
-  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
 }
 
-.chipExtra:hover {
-  background: rgba(255, 255, 255, 0.09);
-  color: var(--color-text-primary);
-  border-color: rgba(255, 255, 255, 0.18);
+.skill:hover {
+  color: var(--color-accent);
+  border-color: var(--color-border-accent);
+  background: var(--color-accent-dim);
+  transform: translateY(-2px);
 }
 
-/* ── Soft skills ─────────────────────────────────────── */
+/* ── Soft skills ──────────────────────────────────────── */
 .softTitle {
+  font-family: var(--font-mono);
   font-size: var(--font-size-sm);
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .softGrid {
@@ -249,30 +118,28 @@
 }
 
 .softCard {
-  padding: 30px 26px;
+  padding: 28px 26px;
+  border-radius: var(--radius-lg);
+  border: var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+  transition: transform var(--t-base), border-color var(--t-base);
 }
 
 .softCard:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow:
-    0 24px 60px rgba(94, 158, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  border-color: var(--color-border-accent);
 }
 
 .softName {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: 700;
-  background: var(--aurora-gradient);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: auroraFlow 14s ease-in-out infinite;
+  color: var(--color-accent);
+  letter-spacing: -0.01em;
 }
 
 .softDesc {
@@ -281,17 +148,9 @@
   line-height: 1.65;
 }
 
-@media (max-width: 1024px) {
-  .catGrid {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "backend"
-      "database"
-      "cloud"
-      "frontend";
-  }
-}
-
-@media (max-width: 640px) {
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .backend { grid-column: span 1; }
   .softGrid { grid-template-columns: 1fr; }
 }

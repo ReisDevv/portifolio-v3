@@ -1,58 +1,38 @@
 :root {
-  /* ─── Background ───────────────────────────────────────
-     Apple-style "cosmic" dark — pure deep black, drifting
-     to very subtle elevated greys for surface layers.        */
-  --color-bg:               #000000;
-  --color-bg-soft:          #06060a;
-  --color-surface:          #0c0c10;
-  --color-surface-elevated: #15151b;
+  /* ─── Background — near-black, dark-first ───────────────── */
+  --color-bg:               #0a0a0a;
+  --color-bg-soft:          #0e0e0e;
+  --color-surface:          #131313;
+  --color-surface-elevated: #1a1a1a;
 
   /* ─── Borders ─────────────────────────────────────────── */
   --color-border:        rgba(255, 255, 255, 0.08);
   --color-border-strong: rgba(255, 255, 255, 0.16);
-  --color-border-accent: rgba(94, 158, 255, 0.28);
+  --color-border-accent: rgba(204, 255, 0, 0.30);
 
-  /* ─── Accent (Apple sky-blue) ─────────────────────────── */
-  --color-accent:       #5e9eff;            /* primary accent — soft Apple blue */
-  --color-accent-hover: #7eb3ff;
-  --color-accent-deep:  #2674e6;
-  --color-accent-dim:   rgba(94, 158, 255, 0.12);
-  --color-accent-glow:  rgba(94, 158, 255, 0.32);
-  --color-accent-ink:   #0a0d14;            /* readable text on accent buttons */
-
-  /* ─── Apple Vision Pro iridescent aurora ──────────────── */
-  --aurora-sky:      #5e9eff;
-  --aurora-lavender: #b18cff;
-  --aurora-pink:     #ff7eb9;
-  --aurora-peach:    #fab28a;
-  --aurora-cream:    #fff3e0;
-
-  --aurora-gradient: linear-gradient(
-    135deg,
-    var(--aurora-sky)      0%,
-    var(--aurora-lavender) 35%,
-    var(--aurora-pink)     65%,
-    var(--aurora-peach)    100%
-  );
-
-  --aurora-soft: linear-gradient(
-    135deg,
-    rgba(94, 158, 255, 0.18)  0%,
-    rgba(177, 140, 255, 0.16) 40%,
-    rgba(255, 126, 185, 0.12) 75%,
-    rgba(250, 178, 138, 0.10) 100%
-  );
+  /* ─── Accent — electric lime ──────────────────────────── */
+  --color-accent:       #ccff00;
+  --color-accent-hover: #d9ff4d;
+  --color-accent-deep:  #a6cc00;
+  --color-accent-dim:   rgba(204, 255, 0, 0.12);
+  --color-accent-glow:  rgba(204, 255, 0, 0.45);
+  --color-accent-ink:   #0a0a0a;            /* dark text on lime fills */
 
   /* ─── Text ────────────────────────────────────────────── */
-  --color-text-primary:   #f5f5f7;                  /* Apple's signature off-white */
-  --color-text-secondary: rgba(245, 245, 247, 0.62);
-  --color-text-muted:     rgba(245, 245, 247, 0.34);
-  --color-text-faint:     rgba(245, 245, 247, 0.18);
+  --color-text-primary:   #f5f5f5;
+  --color-text-secondary: rgba(245, 245, 245, 0.60);
+  --color-text-muted:     rgba(245, 245, 245, 0.36);
+  --color-text-faint:     rgba(245, 245, 245, 0.16);
+
+  /* ─── Fonts ───────────────────────────────────────────── */
+  --font-sans: var(--font-inter, 'Inter', system-ui, sans-serif);
+  --font-mono: var(--font-jetbrains, 'JetBrains Mono', 'SF Mono', 'Courier New', monospace);
 
   /* ─── Fluid typography ────────────────────────────────── */
+  --font-size-display: clamp(72px, 16vw, 240px);   /* giant hero name */
   --font-size-hero: clamp(54px, 9vw, 112px);
-  --font-size-h1:   clamp(38px, 5.4vw, 72px);
-  --font-size-h2:   clamp(28px, 3.6vw, 52px);
+  --font-size-h1:   clamp(40px, 6vw, 84px);
+  --font-size-h2:   clamp(30px, 4.2vw, 60px);
   --font-size-h3:   clamp(20px, 2vw, 30px);
   --font-size-lg:   clamp(17px, 1.5vw, 21px);
   --font-size-base: 16px;
@@ -60,42 +40,46 @@
   --font-size-xs:   12px;
 
   /* ─── Layout ──────────────────────────────────────────── */
-  --section-px: clamp(24px, 8vw, 120px);
-  --section-py: clamp(60px, 10vh, 120px);
+  --section-px: clamp(20px, 6vw, 96px);
+  --section-py: clamp(80px, 12vh, 160px);
+  --content-max: 1200px;
 
   /* ─── Border radius ───────────────────────────────────── */
-  --radius-sm:   8px;
-  --radius-md:   16px;
-  --radius-lg:   24px;
-  --radius-xl:   32px;
+  --radius-sm:   10px;
+  --radius-md:   18px;
+  --radius-lg:   26px;
+  --radius-xl:   34px;
   --radius-2xl:  44px;
   --radius-full: 100px;
 
-  /* ─── Liquid Glass (Apple-style vibrancy) ──────────────── */
-  --glass-bg:     rgba(255, 255, 255, 0.05);
-  --glass-blur:   blur(40px) saturate(180%);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.10);
-  /* Specular highlight + inner glow that sells the "liquid glass" look */
-  --glass-highlight:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  /* ─── Glass (subtle, dark-first) ──────────────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.035);
+  --glass-blur:   blur(24px) saturate(140%);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
 
   /* ─── Easing ──────────────────────────────────────────── */
-  --ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-expo:  cubic-bezier(0.87, 0, 0.13, 1);
-  --ease-apple:    cubic-bezier(0.22, 1, 0.36, 1);   /* Apple's signature ease-out */
-  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* ─── Transitions ─────────────────────────────────────── */
-  --t-fast:   220ms var(--ease-apple);
-  --t-base:   420ms var(--ease-apple);
-  --t-slow:   780ms var(--ease-apple);
-  --t-hero:   1100ms var(--ease-expo);
+  --t-fast: 220ms var(--ease-apple);
+  --t-base: 420ms var(--ease-apple);
+  --t-slow: 720ms var(--ease-expo);
 
-  /* ─── Shadows (deep, layered like Apple cards) ─────────── */
-  --shadow-card:     0 8px 24px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
-  --shadow-lifted:   0 32px 80px rgba(0, 0, 0, 0.55), 0 2px 0 rgba(255, 255, 255, 0.08) inset;
-  --shadow-aurora:   0 24px 80px rgba(94, 158, 255, 0.18), 0 0 60px rgba(177, 140, 255, 0.10);
+  /* ─── Shadows ─────────────────────────────────────────── */
+  --shadow-card:   0 8px 30px rgba(0, 0, 0, 0.40);
+  --shadow-lifted: 0 30px 80px rgba(0, 0, 0, 0.55);
+  --shadow-accent: 0 16px 50px rgba(204, 255, 0, 0.20);
+
+  /* ─── Back-compat aliases (lime-tinted) — kept so any not-yet-
+         rewritten module keeps rendering with the new identity ─ */
+  --aurora-gradient: linear-gradient(100deg, #ccff00 0%, #9fe870 50%, #d9ff4d 100%);
+  --aurora-soft: linear-gradient(135deg, rgba(204,255,0,0.14) 0%, rgba(159,232,112,0.10) 100%);
+  --shadow-aurora: 0 24px 80px rgba(204, 255, 0, 0.16);
+  --ease-in-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --t-hero: 1100ms var(--ease-expo);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -30,10 +30,6 @@
 
 .gem {
   font-size: 7px;
-  background: var(--aurora-gradient);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  opacity: 0.85;
+  color: var(--color-accent);
+  opacity: 0.9;
 }

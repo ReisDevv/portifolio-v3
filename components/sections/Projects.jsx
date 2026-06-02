@@ -2,190 +2,103 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import { SectionLabel } from '@/components/ui/SectionLabel'
-import { GlassCard } from '@/components/ui/GlassCard'
 import styles from './Projects.module.css'
 
-/* Apple-tuned language hues — softer, jewel-toned */
 const LANG_COLORS = {
-  'C#':         '#b18cff',
-  'JavaScript': '#fab28a',
-  'HTML':       '#ff7eb9',
-  'Java':       '#fab28a',
+  'C#':         '#ccff00',
+  'JavaScript': '#f7df1e',
+  'HTML':       '#ff6a3d',
+  'Java':       '#f89820',
   'CSS':        '#7eb3ff',
   'TypeScript': '#5e9eff',
 }
 
-const TAG_COLORS = {
-  'C#':         'rgba(177, 140, 255, 0.14)',
-  'JavaScript': 'rgba(250, 178, 138, 0.14)',
-  'HTML':       'rgba(255, 126, 185, 0.14)',
-  'Java':       'rgba(250, 178, 138, 0.12)',
-  'Node.js':    'rgba(94, 158, 255, 0.14)',
-  '.NET':       'rgba(177, 140, 255, 0.14)',
-  'WinForms':   'rgba(94, 158, 255, 0.14)',
-  'default':    'rgba(255, 255, 255, 0.06)',
-}
-
 const GitHubIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
   </svg>
 )
 
 const ArrowIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-    <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12 5 19 12 12 19" />
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+    <line x1="7" y1="17" x2="17" y2="7" />
+    <polyline points="7 7 17 7 17 17" />
   </svg>
 )
 
-function TagChip({ tag }) {
-  const bg = TAG_COLORS[tag] ?? TAG_COLORS.default
-  return (
-    <span className={styles.tag} style={{ background: bg }}>
-      {tag}
-    </span>
-  )
+const card = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
 }
 
-function FeaturedCard({ item, viewRepo, eyebrow }) {
+function ProjectCard({ item, index, viewRepo, featured }) {
   const langColor = LANG_COLORS[item.language] ?? 'var(--color-accent)'
+  const num = String(index + 1).padStart(2, '0')
 
   return (
-    <motion.div
-      className={styles.featuredWrapper}
-      initial={{ opacity: 0, y: 80, rotateX: 8, scale: 0.96 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+    <motion.a
+      href={item.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${styles.card} ${featured ? styles.featured : ''}`}
+      variants={card}
     >
-      <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.featuredLink}>
-          <GlassCard className={styles.featured} elevated>
-            {/* left: content */}
-            <div className={styles.featuredContent}>
-              <span className={styles.featuredEyebrow}>{eyebrow}</span>
-              <h3 className={styles.featuredTitle}>{item.title}</h3>
-              <p className={styles.featuredDesc}>{item.description}</p>
-              <div className={styles.featuredTags}>
-                {item.tags?.map(t => <TagChip key={t} tag={t} />)}
-              </div>
-              <span className={styles.viewLink}>
-                <GitHubIcon /> {viewRepo} <ArrowIcon />
-              </span>
-            </div>
+      <div className={styles.cardHead}>
+        <span className={styles.num}>{num}</span>
+        {item.language && (
+          <span className={styles.lang}>
+            <span className={styles.langDot} style={{ background: langColor, boxShadow: `0 0 8px ${langColor}` }} />
+            {item.language}
+          </span>
+        )}
+      </div>
 
-            {/* right: decorative terminal-like display */}
-            <div className={styles.featuredDeco} aria-hidden="true">
-              <div className={styles.decoBar}>
-                <span className={styles.decoDot} style={{ background: '#ff5f57' }} />
-                <span className={styles.decoDot} style={{ background: '#febc2e' }} />
-                <span className={styles.decoDot} style={{ background: '#28c840' }} />
-              </div>
-              <div className={styles.decoBody}>
-                <div className={styles.decoRow}>
-                  <span className={styles.decoKw}>namespace</span>
-                  <span className={styles.decoTxt}> SmartCities</span>
-                </div>
-                <div className={styles.decoRow}>
-                  <span className={styles.decoBrace}>{'{'}</span>
-                </div>
-                <div className={styles.decoRow} style={{ paddingLeft: 16 }}>
-                  <span className={styles.decoKw}>class</span>
-                  <span className={styles.decoMethod}> EnergyDashboard</span>
-                </div>
-                <div className={styles.decoRow} style={{ paddingLeft: 16 }}>
-                  <span className={styles.decoBrace}>{'{'}</span>
-                </div>
-                <div className={styles.decoRow} style={{ paddingLeft: 32 }}>
-                  <span className={styles.decoKw}>public</span>
-                  <span className={styles.decoTxt}> Form1()</span>
-                </div>
-                <div className={styles.decoRow} style={{ paddingLeft: 32 }}>
-                  <span className={styles.decoMethod}>  InitComponent</span>
-                  <span className={styles.decoTxt}>();</span>
-                </div>
-                <div className={styles.decoRow} style={{ paddingLeft: 16 }}>
-                  <span className={styles.decoBrace}>{'}'}</span>
-                </div>
-                <div className={styles.decoRow}>
-                  <span className={styles.decoBrace}>{'}'}</span>
-                </div>
-                <div className={styles.decoRow}>
-                  <span className={styles.decoAccent}>▌</span>
-                </div>
-              </div>
-              {item.language && (
-                <div className={styles.decoLang}>
-                  <span
-                    className={styles.decoLangDot}
-                    style={{ background: langColor, boxShadow: `0 0 8px 2px ${langColor}55` }}
-                  />
-                  {item.language}
-                </div>
-              )}
-            </div>
-          </GlassCard>
-        </a>
-    </motion.div>
-  )
-}
+      <div className={styles.cardBody}>
+        <h3 className={styles.cardTitle}>{item.title}</h3>
+        <p className={styles.cardDesc}>{item.description}</p>
+      </div>
 
-function ProjectCard({ item, viewRepo, delay }) {
-  const langColor = LANG_COLORS[item.language] ?? 'var(--color-text-muted)'
-
-  return (
-    <motion.div
-      className={styles.cardWrapper}
-      initial={{ opacity: 0, y: 60, rotateX: 12, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay }}
-    >
-      <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
-          <GlassCard className={styles.card}>
-            <div className={styles.cardTop}>
-              {item.language && (
-                <span className={styles.lang}>
-                  <span
-                    className={styles.langDot}
-                    style={{ background: langColor, boxShadow: `0 0 8px 2px ${langColor}55` }}
-                  />
-                  {item.language}
-                </span>
-              )}
-            </div>
-            <h3 className={styles.cardTitle}>{item.title}</h3>
-            <p className={styles.cardDesc}>{item.description}</p>
-            <div className={styles.cardTags}>
-              {item.tags?.slice(0, 3).map(t => <TagChip key={t} tag={t} />)}
-            </div>
-            <span className={styles.viewLink}>
-              <GitHubIcon /> {viewRepo} <ArrowIcon />
-            </span>
-          </GlassCard>
-        </a>
-    </motion.div>
+      <div className={styles.cardFoot}>
+        <div className={styles.tags}>
+          {item.tags?.slice(0, featured ? 6 : 3).map(t => (
+            <span key={t} className={styles.tag}>{t}</span>
+          ))}
+        </div>
+        <span className={styles.viewLink}>
+          <GitHubIcon />
+          <span>{viewRepo}</span>
+          <span className={styles.arrow}><ArrowIcon /></span>
+        </span>
+      </div>
+    </motion.a>
   )
 }
 
 export function Projects() {
   const { t } = useLanguage()
   const { projects } = t
-  const [featured, ...rest] = projects.items
 
   return (
     <section id="projects" className={styles.section}>
-      <SectionLabel eyebrow={projects.eyebrow} title={projects.title} />
+      <SectionLabel index="02" eyebrow={projects.eyebrow} title={projects.title} />
 
-      {/* Featured first project */}
-      <FeaturedCard item={featured} viewRepo={projects.viewRepo} eyebrow={projects.eyebrow} />
-
-      {/* Remaining projects in 3-column bento grid */}
-      <div className={styles.grid}>
-        {rest.map((item, i) => (
-          <ProjectCard key={i} item={item} viewRepo={projects.viewRepo} delay={i * 0.07} />
+      <motion.div
+        className={styles.grid}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '-80px' }}
+      >
+        {projects.items.map((item, i) => (
+          <ProjectCard
+            key={i}
+            item={item}
+            index={i}
+            viewRepo={projects.viewRepo}
+            featured={i === 0}
+          />
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

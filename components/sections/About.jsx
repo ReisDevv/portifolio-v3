@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import { ChatBot } from '@/components/ui/ChatBot'
-import { RevealText } from '@/components/ui/RevealText'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import styles from './About.module.css'
 
@@ -40,7 +40,7 @@ function useCountUp(target, duration = 1400) {
   return { ref, count, active }
 }
 
-function StatItem({ value, label }) {
+function StatCard({ value, label, delay }) {
   const numeric = parseInt(value, 10)
   const hasSuffix = value.includes('+')
   const isNumeric = !isNaN(numeric)
@@ -53,17 +53,21 @@ function StatItem({ value, label }) {
   return (
     <motion.div
       ref={ref}
-      className={styles.stat}
-      initial={{ opacity: 0, y: 30, rotateX: 18, scale: 0.92 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      className={`${styles.cell} ${styles.statCell}`}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      style={{ transformStyle: 'preserve-3d' }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
     >
       <span className={styles.statValue}>{display}</span>
       <span className={styles.statLabel}>{label}</span>
     </motion.div>
   )
+}
+
+const cell = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
 }
 
 export function About() {
@@ -72,42 +76,48 @@ export function About() {
 
   return (
     <section id="about" className={styles.section}>
-      <div className={styles.inner}>
+      <SectionLabel index="01" eyebrow={about.title} title={about.headline} />
 
-        {/* Left — sticky chatbot */}
-        <div className={styles.chatCol}>
-          <motion.div
-            className={styles.chatWrapper}
-            initial={{ opacity: 0, x: -48, rotateY: 8 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformStyle: 'preserve-3d', transformOrigin: 'left center' }}
-          >
-            <ChatBot key={lang} />
-          </motion.div>
-        </div>
-
-        {/* Right — text + stats */}
-        <div className={styles.textCol}>
-          <SectionLabel eyebrow="SOBRE MIM" title={about.headline} />
-
-          <div className={styles.paragraphs}>
-            {about.paragraphs.map((p, i) => (
-              <RevealText key={i} delay={0.1 + i * 0.1}>
-                <p className={styles.paragraph}>{p}</p>
-              </RevealText>
-            ))}
+      <motion.div
+        className={styles.bento}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '-80px' }}
+      >
+        {/* Photo */}
+        <motion.div className={`${styles.cell} ${styles.photoCell}`} variants={cell}>
+          <Image
+            src="/assets/profile.jpeg"
+            alt="Nelson Reis"
+            fill
+            sizes="(max-width: 900px) 100vw, 320px"
+            className={styles.photo}
+            priority
+          />
+          <div className={styles.photoOverlay}>
+            <span className={styles.photoName}>Nelson Reis</span>
+            <span className={styles.photoRole}>{t.footer.role}</span>
           </div>
+        </motion.div>
 
-          <div className={styles.stats}>
-            {about.stats.map((stat, i) => (
-              <StatItem key={i} value={stat.value} label={stat.label} />
-            ))}
-          </div>
-        </div>
+        {/* Bio */}
+        <motion.div className={`${styles.cell} ${styles.bioCell}`} variants={cell}>
+          {about.paragraphs.map((p, i) => (
+            <p key={i} className={styles.paragraph}>{p}</p>
+          ))}
+        </motion.div>
 
-      </div>
+        {/* Stats */}
+        {about.stats.map((stat, i) => (
+          <StatCard key={i} value={stat.value} label={stat.label} delay={0.1 + i * 0.05} />
+        ))}
+
+        {/* Chatbot */}
+        <motion.div className={`${styles.cell} ${styles.chatCell}`} variants={cell}>
+          <ChatBot key={lang} />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

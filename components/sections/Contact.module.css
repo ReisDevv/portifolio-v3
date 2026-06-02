@@ -1,131 +1,141 @@
 .section {
-  padding: var(--section-py) var(--section-px);
-  padding-bottom: calc(var(--section-py) * 1.5);
   position: relative;
   overflow: hidden;
+  padding-bottom: calc(var(--section-py) * 1.4);
 }
 
-/* Apple-style aurora glow behind contact heading */
-.section::before {
-  content: '';
+.glow {
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(94, 158, 255, 0.10), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 50% 20%, rgba(177, 140, 255, 0.06), transparent 70%);
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 80vh;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(204, 255, 0, 0.10), transparent 70%);
+  filter: blur(40px);
   pointer-events: none;
-  animation: auroraDrift 22s ease-in-out infinite;
+  z-index: 0;
 }
 
 .inner {
-  max-width: 900px;
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
   margin: 0 auto;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 24px;
-  position: relative;
-}
-
-.eyebrow {
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  background: var(--aurora-gradient);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: auroraFlow 12s ease-in-out infinite;
 }
 
 .headline {
   font-size: var(--font-size-h1);
   font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
   color: var(--color-text-primary);
-  line-height: 1.08;
+  max-width: 16ch;
+}
+
+/* Giant clickable email — the focal CTA */
+.emailLink {
+  display: inline-block;
+  font-size: clamp(26px, 5vw, 64px);
+  font-weight: 700;
   letter-spacing: -0.03em;
-}
-
-.cards {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 16px;
-  width: 100%;
-  perspective: 1200px;
-}
-
-.cardLink {
-  flex: 1;
-  min-width: 200px;
-  max-width: 280px;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  color: inherit;
+  line-height: 1.1;
+  word-break: break-word;
+  transition: color var(--t-base);
+  position: relative;
+}
+
+.emailLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 0;
+  height: 3px;
+  background: var(--color-accent);
+  transition: width var(--t-base);
+}
+
+.emailLink:hover {
+  color: var(--color-accent);
+}
+
+.emailLink:hover::after { width: 100%; }
+
+/* ── Contact cards ────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+  margin: 16px 0 8px;
 }
 
 .card {
-  padding: 26px 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 14px;
-  height: 100%;
-  text-align: center;
-  transition: box-shadow var(--t-base), border-color var(--t-base);
+  padding: 20px 22px;
+  border-radius: var(--radius-md);
+  border: var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: inherit;
+  text-decoration: none;
+  transition: transform var(--t-base), border-color var(--t-base);
 }
 
 .card:hover {
-  box-shadow:
-    0 24px 56px rgba(94, 158, 255, 0.18),
-    0 0 30px rgba(177, 140, 255, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  transform: translateY(-5px);
+  border-color: var(--color-border-accent);
 }
 
 .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  background:
-    linear-gradient(135deg,
-      rgba(94, 158, 255, 0.18) 0%,
-      rgba(177, 140, 255, 0.12) 100%
-    );
-  border: 1px solid rgba(94, 158, 255, 0.28);
-  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  flex-shrink: 0;
   color: var(--color-accent);
-  box-shadow: 0 8px 20px rgba(94, 158, 255, 0.18);
+  background: var(--color-accent-dim);
+  transition: background var(--t-base), color var(--t-base);
+}
+
+.card:hover .icon {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
 .cardText {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
+  min-width: 0;
 }
 
 .label {
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .value {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  word-break: break-word;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.ctaRow {
-  margin-top: 16px;
-}
-
-@media (max-width: 640px) {
-  .cards { flex-direction: column; align-items: center; }
-  .cardLink { max-width: 100%; }
-  .headline { font-size: var(--font-size-h2); }
+@media (max-width: 768px) {
+  .cards { grid-template-columns: 1fr; }
 }

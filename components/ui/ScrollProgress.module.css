@@ -4,12 +4,10 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--aurora-gradient);
-  background-size: 200% 200%;
+  background: var(--color-accent);
   transform-origin: left;
   transform: scaleX(0);
   z-index: 10000;
   pointer-events: none;
-  box-shadow: 0 0 12px rgba(94, 158, 255, 0.45);
-  animation: auroraFlow 8s ease-in-out infinite;
+  box-shadow: 0 0 12px var(--color-accent-glow);
 }

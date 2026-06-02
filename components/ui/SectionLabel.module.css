@@ -1,5 +1,5 @@
 .wrapper {
-  margin-bottom: 48px;
+  margin-bottom: 52px;
 }
 
 .centered {
@@ -7,24 +7,38 @@
 }
 
 .eyebrow {
-  display: block;
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: var(--aurora-gradient);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: auroraFlow 12s ease-in-out infinite;
-  margin-bottom: 12px;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+
+.index {
+  color: var(--color-accent-ink);
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  font-weight: 700;
+}
+
+.eyebrowText {
+  color: var(--color-text-muted);
 }
 
 .title {
   font-size: var(--font-size-h2);
   font-weight: 700;
   color: var(--color-text-primary);
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
 }
+
+.centered .title { max-width: none; }
+.centered .eyebrow { justify-content: center; }

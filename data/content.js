@@ -8,10 +8,14 @@ export const content = {
       langLabel: 'EN 🇺🇸',
     },
     hero: {
-      eyebrow: 'Backend Developer @ PRODAM',
-      title: 'Nelson Reis',
-      subtitle: 'Desenvolvedor Backend',
-      cta: 'Sobre Mim',
+      eyebrow: 'Disponível para oportunidades',
+      location: 'São Paulo, Brasil',
+      firstName: 'Nelson',
+      lastName: 'Reis',
+      role: 'Backend Developer',
+      tagline: 'Construo os sistemas e APIs que sustentam produtos digitais — em C#, .NET e SQL Server, na PRODAM.',
+      cta: 'Ver projetos',
+      ctaSecondary: 'Entrar em contato',
       scrollHint: 'Role para baixo',
     },
     about: {
@@ -30,8 +34,8 @@ export const content = {
       ],
     },
     projects: {
-      title: 'Projetos',
-      eyebrow: 'TRABALHOS',
+      title: 'Projetos selecionados',
+      eyebrow: 'Trabalhos',
       viewRepo: 'Ver no GitHub',
       items: [
         {
@@ -79,8 +83,8 @@ export const content = {
       ],
     },
     skills: {
-      title: 'Habilidades',
-      eyebrow: 'TECNOLOGIAS',
+      title: 'Tecnologias & ferramentas',
+      eyebrow: 'Habilidades',
       hardSkills: {
         label: 'Hard skills',
         items: [
@@ -194,10 +198,14 @@ export const content = {
       langLabel: 'PT 🇧🇷',
     },
     hero: {
-      eyebrow: 'Backend Developer @ PRODAM',
-      title: 'Nelson Reis',
-      subtitle: 'Backend Developer',
-      cta: 'About me',
+      eyebrow: 'Available for opportunities',
+      location: 'São Paulo, Brazil',
+      firstName: 'Nelson',
+      lastName: 'Reis',
+      role: 'Backend Developer',
+      tagline: 'I build the systems and APIs that power digital products — in C#, .NET and SQL Server, at PRODAM.',
+      cta: 'View projects',
+      ctaSecondary: 'Get in touch',
       scrollHint: 'Scroll down',
     },
     about: {
@@ -216,8 +224,8 @@ export const content = {
       ],
     },
     projects: {
-      title: 'Projects',
-      eyebrow: 'WORK',
+      title: 'Selected projects',
+      eyebrow: 'Work',
       viewRepo: 'View on GitHub',
       items: [
         {
@@ -265,8 +273,8 @@ export const content = {
       ],
     },
     skills: {
-      title: 'Skills',
-      eyebrow: 'TECHNOLOGIES',
+      title: 'Technologies & tools',
+      eyebrow: 'Skills',
       hardSkills: {
         label: 'Hard skills',
         items: [

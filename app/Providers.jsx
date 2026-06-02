@@ -4,6 +4,7 @@ import { LanguageProvider } from '@/context/LanguageContext'
 import { useLenis } from '@/hooks/useLenis'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { LangToggle } from '@/components/ui/LangToggle'
 
 function LenisInit() {
   useLenis()
@@ -21,6 +22,7 @@ export function Providers({ children }) {
         <LenisInit />
         <ScrollProgress />
         <CustomCursor />
+        <LangToggle />
         {children}
       </MotionConfig>
     </LanguageProvider>
