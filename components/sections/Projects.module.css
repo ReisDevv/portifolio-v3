@@ -5,17 +5,18 @@
 /* ── Featured card ───────────────────────────────────── */
 .featuredWrapper {
   margin-bottom: 16px;
-  perspective: 1400px;
-}
-
-.featuredTilt {
-  display: block;
 }
 
 .featuredLink {
   display: block;
   text-decoration: none;
   color: inherit;
+  transition: transform var(--t-base);
+  will-change: transform;
+}
+
+.featuredLink:hover {
+  transform: translateY(-6px);
 }
 
 .featured {
@@ -41,14 +42,14 @@
   transition: opacity var(--t-base);
 }
 
-.featured:hover {
+.featuredLink:hover .featured {
   box-shadow:
-    0 32px 80px rgba(94, 158, 255, 0.18),
-    0 0 50px rgba(177, 140, 255, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 36px 90px rgba(94, 158, 255, 0.22),
+    0 0 60px rgba(177, 140, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-.featured:hover::before { opacity: 1; }
+.featuredLink:hover .featured::before { opacity: 1; }
 
 .featuredContent {
   padding: 44px 38px;
@@ -182,14 +183,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  perspective: 1400px;
 }
 
 .cardWrapper {
-  display: block;
-}
-
-.tiltOuter {
   display: block;
   height: 100%;
 }
@@ -199,6 +195,12 @@
   text-decoration: none;
   color: inherit;
   height: 100%;
+  transition: transform var(--t-base);
+  will-change: transform;
+}
+
+.cardLink:hover {
+  transform: translateY(-6px);
 }
 
 .card {
@@ -222,14 +224,15 @@
   pointer-events: none;
 }
 
-.card:hover {
+.cardLink:hover .card {
+  border-color: rgba(255, 255, 255, 0.16);
   box-shadow:
-    0 24px 60px rgba(94, 158, 255, 0.14),
-    0 0 30px rgba(177, 140, 255, 0.07),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 28px 70px rgba(94, 158, 255, 0.18),
+    0 0 36px rgba(177, 140, 255, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-.card:hover::before { opacity: 1; }
+.cardLink:hover .card::before { opacity: 1; }
 
 .cardTop {
   display: flex;

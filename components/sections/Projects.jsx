@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { GlassCard } from '@/components/ui/GlassCard'
-import { TiltCard } from '@/components/ui/TiltCard'
 import styles from './Projects.module.css'
 
 /* Apple-tuned language hues — softer, jewel-toned */
@@ -59,10 +58,8 @@ function FeaturedCard({ item, viewRepo, eyebrow }) {
       whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-      style={{ transformStyle: 'preserve-3d' }}
     >
-      <TiltCard className={styles.featuredTilt}>
-        <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.featuredLink}>
+      <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.featuredLink}>
           <GlassCard className={styles.featured} elevated>
             {/* left: content */}
             <div className={styles.featuredContent}>
@@ -129,7 +126,6 @@ function FeaturedCard({ item, viewRepo, eyebrow }) {
             </div>
           </GlassCard>
         </a>
-      </TiltCard>
     </motion.div>
   )
 }
@@ -144,10 +140,8 @@ function ProjectCard({ item, viewRepo, delay }) {
       whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay }}
-      style={{ transformStyle: 'preserve-3d' }}
     >
-      <TiltCard className={styles.tiltOuter}>
-        <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
+      <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.cardLink}>
           <GlassCard className={styles.card}>
             <div className={styles.cardTop}>
               {item.language && (
@@ -170,7 +164,6 @@ function ProjectCard({ item, viewRepo, delay }) {
             </span>
           </GlassCard>
         </a>
-      </TiltCard>
     </motion.div>
   )
 }

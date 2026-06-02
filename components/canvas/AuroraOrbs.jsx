@@ -9,30 +9,27 @@ gsap.registerPlugin(ScrollTrigger)
 
 /* Apple Vision Pro-style iridescent aurora — sky blue, lavender,
    pink and peach orbs drifting in parallax. */
+/* Soft, low-saturation Liquid-Glass aurora. Two cool tones (blue + lavender)
+   kept faint so the background reads as elegant ambient light rather than
+   loud coloured blobs. */
 const ORBS = [
   {
-    size: 720,
-    x: '-12%', y: '0%',
-    color: 'radial-gradient(ellipse, rgba(94,158,255,0.32) 0%, transparent 65%)',
-    duration: 20, xRange: 70, yRange: 40,
+    size: 820,
+    x: '-8%', y: '-6%',
+    color: 'radial-gradient(ellipse, rgba(94,158,255,0.16) 0%, transparent 70%)',
+    duration: 26, xRange: 50, yRange: 30,
   },
   {
-    size: 560,
-    x: '58%', y: '-18%',
-    color: 'radial-gradient(ellipse, rgba(177,140,255,0.26) 0%, transparent 68%)',
-    duration: 24, xRange: -50, yRange: 60,
+    size: 700,
+    x: '70%', y: '0%',
+    color: 'radial-gradient(ellipse, rgba(177,140,255,0.13) 0%, transparent 72%)',
+    duration: 32, xRange: -40, yRange: 45,
   },
   {
-    size: 600,
-    x: '72%', y: '48%',
-    color: 'radial-gradient(ellipse, rgba(255,126,185,0.20) 0%, transparent 65%)',
-    duration: 28, xRange: -60, yRange: -30,
-  },
-  {
-    size: 420,
-    x: '18%', y: '62%',
-    color: 'radial-gradient(ellipse, rgba(250,178,138,0.18) 0%, transparent 70%)',
-    duration: 22, xRange: 45, yRange: -50,
+    size: 620,
+    x: '50%', y: '70%',
+    color: 'radial-gradient(ellipse, rgba(94,158,255,0.10) 0%, transparent 72%)',
+    duration: 30, xRange: 35, yRange: -35,
   },
 ]
 

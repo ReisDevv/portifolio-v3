@@ -1,25 +1,35 @@
+/* ─── Liquid Glass surfaces ────────────────────────────────
+   Translucent frosted panels with a top specular highlight and a
+   soft inner glow — the Apple "Liquid Glass" material. The ::before
+   layer carries a faint diagonal sheen so light appears to slide
+   across the surface. */
 .glass {
+  position: relative;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
+  box-shadow: var(--glass-highlight), 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 .glass-elevated {
-  background: rgba(255, 255, 255, 0.075);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(44px) saturate(200%);
+  -webkit-backdrop-filter: blur(44px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.08) inset,
-    0 24px 60px rgba(0, 0, 0, 0.35);
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 24px 60px rgba(0, 0, 0, 0.40);
 }
 
 .glass-accent {
   background: rgba(94, 158, 255, 0.07);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(94, 158, 255, 0.20);
+  box-shadow: var(--glass-highlight);
 }
 
 /* Aurora-tinted glass — for highlighted cards */
@@ -32,7 +42,8 @@
       rgba(250, 178, 138, 0.04) 100%
     ),
     rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(30px) saturate(190%);
-  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  backdrop-filter: blur(34px) saturate(190%);
+  -webkit-backdrop-filter: blur(34px) saturate(190%);
   border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: var(--glass-highlight);
 }

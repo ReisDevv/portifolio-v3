@@ -71,10 +71,14 @@
   --radius-2xl:  44px;
   --radius-full: 100px;
 
-  /* ─── Glassmorphism (Apple "vibrancy") ─────────────────── */
-  --glass-bg:     rgba(255, 255, 255, 0.045);
-  --glass-blur:   blur(28px) saturate(180%);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.09);
+  /* ─── Liquid Glass (Apple-style vibrancy) ──────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.05);
+  --glass-blur:   blur(40px) saturate(180%);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.10);
+  /* Specular highlight + inner glow that sells the "liquid glass" look */
+  --glass-highlight:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 
   /* ─── Easing ──────────────────────────────────────────── */
   --ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);

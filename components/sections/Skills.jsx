@@ -11,6 +11,7 @@ const GROUPS = [
   {
     key: 'backend',
     label: { pt: 'Backend Core', en: 'Backend Core' },
+    badge: '{ }',
     color: '#5e9eff',                  /* sky blue */
     gridArea: 'backend',
     primary: ['C#', 'ASP.NET / Legacy ASP', 'Java', 'Entity Framework', 'LINQ'],
@@ -19,6 +20,7 @@ const GROUPS = [
   {
     key: 'database',
     label: { pt: 'Banco de Dados', en: 'Database' },
+    badge: 'DB',
     color: '#b18cff',                  /* lavender */
     gridArea: 'database',
     primary: ['SQL Server', 'MySQL / PostgreSQL'],
@@ -27,6 +29,7 @@ const GROUPS = [
   {
     key: 'cloud',
     label: { pt: 'Cloud & DevOps', en: 'Cloud & DevOps' },
+    badge: '☁',
     color: '#ff7eb9',                  /* pink */
     gridArea: 'cloud',
     primary: ['Azure', 'Docker', 'Git'],
@@ -35,6 +38,7 @@ const GROUPS = [
   {
     key: 'frontend',
     label: { pt: 'Frontend & Web', en: 'Frontend & Web' },
+    badge: '</>',
     color: '#fab28a',                  /* peach */
     gridArea: 'frontend',
     primary: ['JavaScript / TypeScript'],
@@ -63,8 +67,11 @@ function SkillChip({ name, description, color, isPrimary }) {
         aria-expanded={hasDesc ? open : undefined}
         disabled={!hasDesc}
       >
-        {isPrimary && <span className={styles.chipDot} style={{ background: color }} />}
-        {name}
+        <span className={styles.chipLabel}>
+          {isPrimary && <span className={styles.chipDot} style={{ background: color, color }} />}
+          {name}
+        </span>
+        {isPrimary && hasDesc && <span className={styles.chevron} aria-hidden="true">▾</span>}
       </button>
 
       <AnimatePresence>
@@ -91,17 +98,19 @@ function CategoryCard({ group, allItems, lang }) {
   return (
     <motion.div
       className={`${styles.catCard} ${styles[group.key]}`}
-      initial={{ opacity: 0, y: 70, rotateX: 14, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      style={{ '--cat-color': group.color }}
+      initial={{ opacity: 0, y: 60, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      style={{ transformStyle: 'preserve-3d' }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
       <GlassCard className={styles.catInner}>
         {/* Header */}
         <div className={styles.catHeader}>
-          <span className={styles.catDot} style={{ background: group.color, boxShadow: `0 0 10px 2px ${group.color}55` }} />
-          <span className={styles.catLabel} style={{ color: group.color }}>{label}</span>
+          <span className={styles.catBadge} style={{ '--cat-color': group.color }}>
+            {group.badge}
+          </span>
+          <span className={styles.catLabel}>{label}</span>
         </div>
 
         {/* Primary skills — larger, clickable for description */}
