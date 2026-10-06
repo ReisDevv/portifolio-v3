@@ -1,44 +1,36 @@
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import { Providers } from './Providers'
-import { Footer } from '@/components/layout/Footer'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains',
-  display: 'swap',
-})
-
 export const metadata = {
-  title: 'Nelson Reis — Backend Developer',
-  description: 'Backend developer focused on C#, REST APIs and Clean Architecture. Currently at PRODAM building systems for São Paulo City Hall.',
-  keywords: ['backend developer', 'C#', 'REST API', 'Clean Architecture', 'PRODAM', 'São Paulo'],
-  authors: [{ name: 'Nelson Reis' }],
+  metadataBase: new URL('https://portfolio-reisdevvs-projects.vercel.app'),
+  title: 'Nelson Reis | Backend Developer',
+  description:
+    'Desenvolvedor backend na PRODAM. C#, .NET, SQL Server e APIs REST para serviços da Prefeitura de São Paulo.',
+  keywords: ['backend developer', 'C#', '.NET', 'SQL Server', 'NestJS', 'PRODAM', 'São Paulo'],
+  authors: [{ name: 'Nelson Reis', url: 'https://github.com/ReisDevv' }],
+  icons: { icon: '/icons/favicon.svg' },
   openGraph: {
-    title: 'Nelson Reis — Backend Developer',
-    description: 'Backend developer focused on C#, REST APIs and Clean Architecture.',
+    title: 'Nelson Reis | Backend Developer',
+    description: 'Desenvolvedor backend na PRODAM. C#, .NET, SQL Server e APIs REST.',
     type: 'website',
+    images: ['/assets/portrait.jpg'],
   },
+}
+
+export const viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fafaf9' },
+    { media: '(prefers-color-scheme: dark)', color: '#0e0f10' },
+  ],
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
-        <meta name="google" content="notranslate" />
-      </head>
+    <html lang="pt-BR" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
-        <Providers>
-          <main>{children}</main>
-          <Footer />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

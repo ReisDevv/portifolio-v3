@@ -1,381 +1,225 @@
+// All copy lives here. Project data mirrors the public repos at github.com/ReisDevv.
+
+export const links = {
+  github: 'https://github.com/ReisDevv',
+  linkedin: 'https://www.linkedin.com/in/nelsonreisgomes/',
+  email: 'nelsondosreisgomessouza@gmail.com',
+  phone: '+55 11 98551-6950',
+  phoneHref: 'tel:+5511985516950',
+  resume: '/assets/resume.pdf',
+}
+
+// GitHub linguist colors, so each language reads the same as on the repo page.
+export const languageColors = {
+  'C#': '#178600',
+  TypeScript: '#3178c6',
+  JavaScript: '#f1e05a',
+  Java: '#b07219',
+  HTML: '#e34c26',
+}
+
+const repo = name => `https://github.com/ReisDevv/${name}`
+
+export const featuredProject = {
+  title: 'Maya RPG',
+  repo: repo('maya-rpg'),
+  live: 'https://maya-rpg-web.vercel.app',
+  image: '/projects/maya-rpg.webp',
+  imageAlt: { pt: 'Tela de login do painel da Clínica Maya', en: 'Login screen of the Maya Clinic panel' },
+  languages: ['TypeScript', 'Java'],
+  stack: ['NestJS', 'TypeORM', 'PostgreSQL', 'JWT', 'React 19', 'Vite', 'Tailwind', 'Android', 'Firebase', 'Docker'],
+  kicker: {
+    pt: 'Plataforma para clínica de fisioterapia',
+    en: 'Platform for a physiotherapy clinic',
+  },
+  description: {
+    pt: 'Monorepo com API em NestJS, painel web em React e app Android para uma clínica de RPG. Cobre pacientes, prontuários, prescrições de exercícios, agenda, check-ins, chat e notificações push.',
+    en: 'Monorepo with a NestJS API, a React web panel and an Android app for a postural therapy clinic. Covers patients, medical records, exercise prescriptions, scheduling, check-ins, chat and push notifications.',
+  },
+}
+
+export const projects = [
+  {
+    title: 'Ecos do Santuário',
+    repo: repo('MonoDailyLife'),
+    image: '/projects/ecos-do-santuario.webp',
+    imageAlt: { pt: 'Menu inicial do jogo Ecos do Santuário', en: 'Title screen of the game Ecos do Santuário' },
+    languages: ['JavaScript'],
+    stack: ['Canvas API', 'HTML', 'CSS'],
+    description: {
+      pt: 'Jogo 2D de navegador em JavaScript puro e Canvas, com ciclo de tempo, clima, inventário, crafting, narrativa e controles de toque.',
+      en: 'Browser 2D game in plain JavaScript and Canvas, with a day cycle, weather, inventory, crafting, narrative and touch controls.',
+    },
+  },
+  {
+    title: 'Dashboard Smart Cities',
+    repo: repo('Dashboard-Smart-Cities-'),
+    languages: ['C#'],
+    stack: ['WinForms', '.NET', 'MySQL'],
+    description: {
+      pt: 'Painel desktop para acompanhar o consumo de energia de uma casa inteligente, com visão por cômodo, metas e ranking.',
+      en: 'Desktop panel that tracks energy use in a smart home, with per-room views, goals and a ranking.',
+    },
+  },
+  {
+    title: 'API Node',
+    repo: repo('api-node'),
+    languages: ['JavaScript'],
+    stack: ['Express 5', 'MySQL'],
+    description: {
+      pt: 'API REST de usuários em Express e MySQL, separada em rotas, controllers e services.',
+      en: 'User REST API in Express and MySQL, split into routes, controllers and services.',
+    },
+  },
+  {
+    title: 'ChekPoint',
+    repo: repo('ChekPoint'),
+    languages: ['C#'],
+    stack: ['WinForms', '.NET'],
+    description: {
+      pt: 'Registro de ponto em WinForms. Cada entrada e saída é gravada com data e hora em arquivos mensais.',
+      en: 'WinForms time clock. Every clock-in and clock-out is saved with date and time to monthly files.',
+    },
+  },
+]
+
+export const studies = [
+  { title: 'Object-Oriented Programming', repo: repo('Object-Oriented-Programming'), language: 'C#' },
+  { title: 'Structure of Algorithms', repo: repo('Structure-of-Algorithms'), language: 'C#' },
+  { title: 'Desenvolvimento Web Full Stack', repo: repo('Desenvolvimento-Web-Fullstack'), language: 'HTML' },
+  { title: 'Programming exercises', repo: repo('Programming-exercise-codes'), language: 'Java' },
+]
+
 export const content = {
   pt: {
-    nav: {
-      about: 'Sobre',
-      projects: 'Projetos',
-      skills: 'Habilidades',
-      contact: 'Contato',
-      langLabel: 'EN 🇺🇸',
-    },
+    nav: { experience: 'Experiência', projects: 'Projetos', stack: 'Stack', contact: 'Contato', switchTo: 'EN', switchLabel: 'Switch to English' },
     hero: {
       eyebrow: 'Disponível para oportunidades',
-      location: 'São Paulo, Brasil',
-      firstName: 'Nelson',
-      lastName: 'Reis',
-      role: 'Backend Developer',
-      tagline: 'Construo os sistemas e APIs que sustentam produtos digitais — em C#, .NET e SQL Server, na PRODAM.',
-      cta: 'Ver projetos',
-      ctaSecondary: 'Entrar em contato',
-      scrollHint: 'Role para baixo',
+      headline: 'Backend em C# e .NET para serviços públicos.',
+      sub: 'Sou Nelson Reis, dev backend na PRODAM. Construo APIs e sistemas que mantêm a rede de saúde de São Paulo funcionando.',
+      primary: 'Ver projetos',
+      secondary: 'Contato',
+      photoAlt: 'Nelson Reis na FECAP',
     },
-    about: {
-      title: 'Sobre mim',
-      headline: 'Eu construo os motores por trás dos produtos digitais.',
-      paragraphs: [
-        'Sou desenvolvedor backend em estágio na PRODAM, onde cuido do sistema de estoque de saúde da Prefeitura de São Paulo — fazendo consultas em banco de dados, modernizando APIs e mantendo sistemas legados em ASP.NET. Participo de weekly meetings com o time e entrego mudanças que impactam diretamente a gestão de saúde pública.',
-        'Trabalho com C# e SQL Server no dia a dia, aplicando Clean Architecture e Entity Framework para construir sistemas robustos e escaláveis. Tenho experiência com Azure no ambiente corporativo e colaboro com squads multidisciplinares.',
-        'Estudo Análise e Desenvolvimento de Sistemas na FECAP, represento a faculdade nas maratonas de programação da SBC e tenho nível B2 de inglês. Acredito que backend sólido é a base de qualquer produto digital que funciona de verdade.',
-      ],
-      stats: [
-        { value: '2+', label: 'anos de experiência' },
-        { value: 'PRODAM', label: 'empresa atual' },
-        { value: '8+', label: 'projetos' },
-        { value: 'B2', label: 'nível de inglês' },
+    experience: {
+      title: 'Onde eu trabalho e estudo',
+      items: [
+        {
+          org: 'PRODAM',
+          role: 'Desenvolvedor Backend',
+          period: 'Atual',
+          text: 'Mantenho o sistema de estoque da rede de saúde da Prefeitura de São Paulo: consultas em T-SQL, APIs em C# e manutenção de aplicações ASP.NET legadas.',
+          tags: ['C#', 'ASP.NET', 'SQL Server', 'Azure'],
+        },
+        {
+          org: 'FECAP',
+          role: 'Análise e Desenvolvimento de Sistemas',
+          period: 'Em curso',
+          text: 'Programação orientada a objetos, estruturas de dados, desenvolvimento web full stack e projetos integradores em equipe.',
+          tags: ['C#', 'Java', 'Web'],
+        },
+        {
+          org: 'Maratona de Programação SBC',
+          role: 'Competidor pela FECAP',
+          period: 'Competição',
+          text: 'Resolução de problemas de algoritmos em equipe, com tempo contado.',
+          tags: ['Algoritmos', 'Java'],
+        },
       ],
     },
     projects: {
-      title: 'Projetos selecionados',
-      eyebrow: 'Trabalhos',
-      viewRepo: 'Ver no GitHub',
-      items: [
-        {
-          title: 'Dashboard Smart Cities',
-          description: 'Dashboard desktop para controle de energia de casas inteligentes, desenvolvido no 1º semestre com C# e WinForms. Exibe consumo em tempo real e alertas por cômodo.',
-          language: 'C#',
-          tags: ['C#', 'WinForms', '.NET', 'Smart Home'],
-          url: 'https://github.com/ReisDevv/Dashboard-Smart-Cities-',
-        },
-        {
-          title: 'ChekPoint',
-          description: 'Sistema de controle de ponto com C# seguindo boas práticas de desenvolvimento — separação em camadas, validações e persistência de dados.',
-          language: 'C#',
-          tags: ['C#', '.NET', 'Clean Arch'],
-          url: 'https://github.com/ReisDevv/ChekPoint',
-        },
-        {
-          title: 'API Node',
-          description: 'API RESTful construída com Node.js para praticar desenvolvimento backend com JavaScript — autenticação, rotas e integração com banco.',
-          language: 'JavaScript',
-          tags: ['Node.js', 'JavaScript', 'REST API'],
-          url: 'https://github.com/ReisDevv/api-node',
-        },
-        {
-          title: 'Projeto Integrador',
-          description: 'Projeto interdisciplinar do 3º semestre incluindo site para ONG — integrando front-end, back-end e banco de dados para uma causa social real.',
-          language: null,
-          tags: ['HTML', 'CSS', 'C#', 'ONG'],
-          url: 'https://github.com/ReisDevv/PROJETO-PI-3SEM',
-        },
-        {
-          title: 'Dev Web Fullstack',
-          description: 'Aplicação web fullstack da faculdade, cobrindo front e backend. Foco em boas práticas de HTML, CSS e integração com servidor.',
-          language: 'HTML',
-          tags: ['HTML', 'CSS', 'JavaScript'],
-          url: 'https://github.com/ReisDevv/Desenvolvimento-Web-Fullstack',
-        },
-        {
-          title: 'Estrutura de Algoritmos',
-          description: 'Exercícios e desafios de estruturas de dados e algoritmos em C# — listas, pilhas, filas, árvores e problemas de complexidade, base para a maratona SBC.',
-          language: 'C#',
-          tags: ['C#', 'Java', 'Algoritmos'],
-          url: 'https://github.com/ReisDevv/Structure-of-Algorithms',
-        },
-      ],
+      title: 'Projetos',
+      intro: 'O que está público no meu GitHub, do mais completo ao mais simples.',
+      repo: 'Código',
+      live: 'Ver online',
+      studiesTitle: 'Repositórios de estudo',
+      all: 'Todos os repositórios',
     },
-    skills: {
-      title: 'Tecnologias & ferramentas',
-      eyebrow: 'Habilidades',
-      hardSkills: {
-        label: 'Hard skills',
-        items: [
-          {
-            name: 'C#',
-            description: 'Linguagem principal que uso na PRODAM. Aprendi aplicando no trabalho real, construindo APIs e sistemas que atendem a rede de saúde da Prefeitura de São Paulo.',
-          },
-          {
-            name: 'ASP.NET / Legacy ASP',
-            description: 'Trabalho diretamente com sistemas legados em ASP.NET na PRODAM — realizando manutenção, correção de bugs e modernização de aplicações críticas do governo.',
-          },
-          {
-            name: 'SQL Server',
-            description: 'Banco principal que uso na PRODAM para consultas complexas no sistema de estoque de saúde do governo de SP. Domínio de T-SQL, stored procedures e otimização de queries.',
-          },
-          {
-            name: 'Java',
-            description: 'Aprendi Java nos estudos e aplico na maratona de programação da SBC, onde resolvo desafios algorítmicos complexos. Sólida compreensão de OOP e estruturas de dados.',
-          },
-          {
-            name: 'Azure',
-            description: 'Uso Azure no ambiente de trabalho na PRODAM para serviços de cloud, gestão de recursos e integração de sistemas da infraestrutura corporativa.',
-          },
-          {
-            name: 'Web API REST',
-            description: 'Desenvolvo APIs seguindo boas práticas RESTful — design, versionamento e documentação. Aprendi integrando sistemas legados e novos no ambiente corporativo.',
-          },
-          {
-            name: 'Entity Framework',
-            description: 'ORM que uso para modelar e manipular dados relacionais em C#, aplicando junto com Clean Architecture para manter separação entre domínio e infraestrutura.',
-          },
-          {
-            name: 'WinForms',
-            description: 'Utilizei WinForms para criar um dashboard desktop de controle de energia para casas inteligentes — meu primeiro projeto real de interface em C#.',
-          },
-          {
-            name: 'Clean Architecture',
-            description: 'Padrão que busco aplicar em todos os projetos para separar responsabilidades, facilitar testes e tornar o código mais sustentável a longo prazo.',
-          },
-          {
-            name: 'LINQ',
-            description: 'Uso LINQ para simplificar operações sobre coleções e consultas em C#, tornando o código mais legível e eficiente nas rotinas do dia a dia na PRODAM.',
-          },
-          {
-            name: 'JavaScript / TypeScript',
-            description: 'Desenvolvo projetos fullstack com JS e TS — incluindo APIs com Node.js e interfaces com React e Next.js, aplicando tipagem para melhorar a manutenibilidade.',
-          },
-          {
-            name: 'Docker',
-            description: 'Uso containers para padronizar ambientes de desenvolvimento e facilitar o deploy de aplicações, garantindo consistência entre local e produção.',
-          },
-          {
-            name: 'MySQL / PostgreSQL',
-            description: 'Bancos relacionais que uso em projetos acadêmicos e pessoais. Aprendi nos semestres da faculdade e aprofundei modelando dados em projetos integradores.',
-          },
-          {
-            name: 'Git',
-            description: 'Ferramenta de controle de versão que uso diariamente para colaborar em equipe, manter histórico do código e gerenciar branches em projetos reais.',
-          },
-        ],
-      },
-      softSkills: {
-        label: 'Soft skills',
-        items: [
-          {
-            name: 'Trabalho em equipe',
-            description: 'Desenvolvida atuando em projetos colaborativos na PRODAM com weekly meetings, onde comunicação e coordenação com outros times é essencial para entregar valor.',
-          },
-          {
-            name: 'Inglês B2',
-            description: 'Nível certificado por teste na faculdade. Consigo ler documentações técnicas, participar de reuniões em inglês e me comunicar com equipes internacionais.',
-          },
-          {
-            name: 'Resolução de problemas',
-            description: 'Treinada nas maratonas de programação da SBC e no dia a dia — diagnosticar sistemas legados, otimizar queries e entregar soluções sob pressão de tempo.',
-          },
-        ],
-      },
+    stack: {
+      title: 'Ferramentas que uso',
+      groups: [
+        { name: 'Backend', items: ['C#', '.NET', 'ASP.NET', 'Entity Framework', 'LINQ', 'NestJS', 'Node.js', 'Express'] },
+        { name: 'Dados', items: ['SQL Server', 'T-SQL', 'PostgreSQL', 'MySQL', 'TypeORM'] },
+        { name: 'Front e mobile', items: ['TypeScript', 'React', 'Next.js', 'Tailwind', 'Android'] },
+        { name: 'Infra', items: ['Azure', 'Docker', 'Firebase', 'Git'] },
+      ],
+      languagesLabel: 'Idiomas',
+      languages: 'Português nativo, inglês B2',
     },
     contact: {
-      eyebrow: 'CONTATO',
-      headline: 'Vamos construir algo.',
-      title: 'Me contate!',
-      downloadCta: 'Baixar Currículo',
-      items: [
-        { icon: 'linkedin', label: 'LinkedIn', value: '/nelsonreisgomes', url: 'https://www.linkedin.com/in/nelsonreisgomes/' },
-        { icon: 'email', label: 'Email', value: 'nelsondosreisgomessouza@gmail.com', url: 'mailto:nelsondosreisgomessouza@gmail.com' },
-        { icon: 'phone', label: 'Telefone', value: '+55 11 98551-6950', url: 'tel:+5511985516950' },
-      ],
+      title: 'Vamos conversar.',
+      sub: 'Estou aberto a vagas de backend e projetos com C#, .NET ou Node. Respondo por email ou LinkedIn.',
+      copy: 'Copiar email',
+      copied: 'Email copiado',
+      resume: 'Baixar currículo',
+      phone: 'Telefone',
     },
-    footer: {
-      role: 'Backend Developer',
-      rights: 'Todos os direitos reservados.',
-      nav: {
-        about: 'Sobre',
-        projects: 'Projetos',
-        skills: 'Habilidades',
-        email: 'Email',
-        linkedin: 'LinkedIn',
-        github: 'GitHub',
-      },
-    },
+    footer: { built: 'Feito com Next.js e Tailwind.' },
   },
 
   en: {
-    nav: {
-      about: 'About',
-      projects: 'Projects',
-      skills: 'Skills',
-      contact: 'Contact',
-      langLabel: 'PT 🇧🇷',
-    },
+    nav: { experience: 'Experience', projects: 'Projects', stack: 'Stack', contact: 'Contact', switchTo: 'PT', switchLabel: 'Mudar para português' },
     hero: {
-      eyebrow: 'Available for opportunities',
-      location: 'São Paulo, Brazil',
-      firstName: 'Nelson',
-      lastName: 'Reis',
-      role: 'Backend Developer',
-      tagline: 'I build the systems and APIs that power digital products — in C#, .NET and SQL Server, at PRODAM.',
-      cta: 'View projects',
-      ctaSecondary: 'Get in touch',
-      scrollHint: 'Scroll down',
+      eyebrow: 'Open to opportunities',
+      headline: 'C# and .NET backend for public services.',
+      sub: "I'm Nelson Reis, backend developer at PRODAM. I build the APIs and systems that keep São Paulo's health network running.",
+      primary: 'View projects',
+      secondary: 'Contact',
+      photoAlt: 'Nelson Reis at FECAP',
     },
-    about: {
-      title: 'About me',
-      headline: 'I build the engines behind digital products.',
-      paragraphs: [
-        "I'm a backend developer interning at PRODAM, where I maintain the health inventory system for the São Paulo City Hall — writing database queries, modernizing APIs, and maintaining legacy ASP.NET applications. I join weekly team meetings and ship changes that directly impact public health management.",
-        'Day to day I work with C# and SQL Server, applying Clean Architecture and Entity Framework to build robust, scalable systems. I also have hands-on experience with Azure in a corporate setting and collaborate with multidisciplinary squads.',
-        'I study Systems Analysis and Development at FECAP, compete in SBC programming marathons, and hold a B2 English level. I believe solid backend engineering is the foundation of any digital product that truly works.',
-      ],
-      stats: [
-        { value: '2+', label: 'years of experience' },
-        { value: 'PRODAM', label: 'current company' },
-        { value: '8+', label: 'projects' },
-        { value: 'B2', label: 'english level' },
+    experience: {
+      title: 'Where I work and study',
+      items: [
+        {
+          org: 'PRODAM',
+          role: 'Backend Developer',
+          period: 'Current',
+          text: "I maintain the health network inventory system for São Paulo City Hall: T-SQL queries, C# APIs and upkeep of legacy ASP.NET applications.",
+          tags: ['C#', 'ASP.NET', 'SQL Server', 'Azure'],
+        },
+        {
+          org: 'FECAP',
+          role: 'Systems Analysis and Development',
+          period: 'In progress',
+          text: 'Object-oriented programming, data structures, full stack web development and team capstone projects.',
+          tags: ['C#', 'Java', 'Web'],
+        },
+        {
+          org: 'SBC Programming Marathon',
+          role: 'Competitor for FECAP',
+          period: 'Competition',
+          text: 'Solving algorithm problems as a team, against the clock.',
+          tags: ['Algorithms', 'Java'],
+        },
       ],
     },
     projects: {
-      title: 'Selected projects',
-      eyebrow: 'Work',
-      viewRepo: 'View on GitHub',
-      items: [
-        {
-          title: 'Dashboard Smart Cities',
-          description: 'Desktop dashboard for smart home energy control, built in the 1st semester with C# and WinForms. Displays real-time consumption and room-level alerts.',
-          language: 'C#',
-          tags: ['C#', 'WinForms', '.NET', 'Smart Home'],
-          url: 'https://github.com/ReisDevv/Dashboard-Smart-Cities-',
-        },
-        {
-          title: 'ChekPoint',
-          description: 'Time tracking system built with C# following best practices — layered separation, input validation, and data persistence.',
-          language: 'C#',
-          tags: ['C#', '.NET', 'Clean Arch'],
-          url: 'https://github.com/ReisDevv/ChekPoint',
-        },
-        {
-          title: 'API Node',
-          description: 'RESTful API built with Node.js to practice backend development — authentication, routing, and database integration.',
-          language: 'JavaScript',
-          tags: ['Node.js', 'JavaScript', 'REST API'],
-          url: 'https://github.com/ReisDevv/api-node',
-        },
-        {
-          title: 'Integrative Project',
-          description: "3rd semester interdisciplinary project including a website for an NGO — integrating front-end, back-end and a database for a real social cause.",
-          language: null,
-          tags: ['HTML', 'CSS', 'C#', 'NGO'],
-          url: 'https://github.com/ReisDevv/PROJETO-PI-3SEM',
-        },
-        {
-          title: 'Fullstack Web Dev',
-          description: 'Fullstack web application from university, covering front and backend with a focus on HTML, CSS best practices and server integration.',
-          language: 'HTML',
-          tags: ['HTML', 'CSS', 'JavaScript'],
-          url: 'https://github.com/ReisDevv/Desenvolvimento-Web-Fullstack',
-        },
-        {
-          title: 'Algorithm Structures',
-          description: 'Data structures and algorithm exercises in C# — lists, stacks, queues, trees and complexity problems. Foundation for the SBC programming marathon.',
-          language: 'C#',
-          tags: ['C#', 'Java', 'Algorithms'],
-          url: 'https://github.com/ReisDevv/Structure-of-Algorithms',
-        },
-      ],
+      title: 'Projects',
+      intro: "What's public on my GitHub, from the most complete to the simplest.",
+      repo: 'Code',
+      live: 'Live site',
+      studiesTitle: 'Study repositories',
+      all: 'All repositories',
     },
-    skills: {
-      title: 'Technologies & tools',
-      eyebrow: 'Skills',
-      hardSkills: {
-        label: 'Hard skills',
-        items: [
-          {
-            name: 'C#',
-            description: 'My primary language at PRODAM. Learned by doing real work — building APIs and systems that serve the São Paulo City Hall health network.',
-          },
-          {
-            name: 'ASP.NET / Legacy ASP',
-            description: 'I work directly with legacy ASP.NET systems at PRODAM — performing maintenance, bug fixes and modernization of critical government applications.',
-          },
-          {
-            name: 'SQL Server',
-            description: "Primary database at PRODAM. I write complex queries for the São Paulo government's health inventory system — T-SQL, stored procedures, and query optimization.",
-          },
-          {
-            name: 'Java',
-            description: 'Studied Java and apply it in the SBC programming marathon, solving complex algorithmic challenges. Solid understanding of OOP and data structures.',
-          },
-          {
-            name: 'Azure',
-            description: "I use Azure at PRODAM for cloud services, resource management, and integration of the corporation's infrastructure.",
-          },
-          {
-            name: 'Web API REST',
-            description: 'I build APIs following RESTful best practices — design, versioning, and documentation — learned through integrating legacy and modern systems in a corporate environment.',
-          },
-          {
-            name: 'Entity Framework',
-            description: 'ORM I use to model and manipulate relational data in C#, applied alongside Clean Architecture to keep domain and infrastructure separate.',
-          },
-          {
-            name: 'WinForms',
-            description: 'Used WinForms to build a desktop dashboard for smart home energy control — my first real C# desktop application with a full UI.',
-          },
-          {
-            name: 'Clean Architecture',
-            description: 'A pattern I apply across projects to separate responsibilities, make testing easier, and keep code maintainable over time.',
-          },
-          {
-            name: 'LINQ',
-            description: 'I use LINQ to simplify operations on collections and queries in C#, making everyday code at PRODAM more readable and efficient.',
-          },
-          {
-            name: 'JavaScript / TypeScript',
-            description: 'I build fullstack projects with JS and TS — Node.js APIs and React/Next.js interfaces — using TypeScript for better type safety and maintainability.',
-          },
-          {
-            name: 'Docker',
-            description: 'I use containers to standardize development environments and streamline application deployments, ensuring consistency from local to production.',
-          },
-          {
-            name: 'MySQL / PostgreSQL',
-            description: 'Relational databases used in academic and personal projects. Deepened my knowledge modeling data in integrative semester projects.',
-          },
-          {
-            name: 'Git',
-            description: 'Version control tool I use daily to collaborate with teams, maintain code history, and manage branches across real-world projects.',
-          },
-        ],
-      },
-      softSkills: {
-        label: 'Soft skills',
-        items: [
-          {
-            name: 'Teamwork',
-            description: 'Developed through collaborative work at PRODAM with weekly meetings, where communication and coordination across teams is essential to deliver value.',
-          },
-          {
-            name: 'English B2',
-            description: 'Certified level by a university placement test. I can read technical documentation, join meetings in English, and communicate with international teams.',
-          },
-          {
-            name: 'Problem Solving',
-            description: 'Sharpened in SBC programming marathons and daily work — diagnosing legacy systems, optimizing queries, and shipping solutions under time pressure.',
-          },
-        ],
-      },
+    stack: {
+      title: 'Tools I use',
+      groups: [
+        { name: 'Backend', items: ['C#', '.NET', 'ASP.NET', 'Entity Framework', 'LINQ', 'NestJS', 'Node.js', 'Express'] },
+        { name: 'Data', items: ['SQL Server', 'T-SQL', 'PostgreSQL', 'MySQL', 'TypeORM'] },
+        { name: 'Front end and mobile', items: ['TypeScript', 'React', 'Next.js', 'Tailwind', 'Android'] },
+        { name: 'Infra', items: ['Azure', 'Docker', 'Firebase', 'Git'] },
+      ],
+      languagesLabel: 'Languages',
+      languages: 'Portuguese (native), English B2',
     },
     contact: {
-      eyebrow: 'CONTACT',
-      headline: "Let's build something.",
-      title: 'Get in touch!',
-      downloadCta: 'Download Resume',
-      items: [
-        { icon: 'linkedin', label: 'LinkedIn', value: '/nelsonreisgomes', url: 'https://www.linkedin.com/in/nelsonreisgomes/' },
-        { icon: 'email', label: 'Email', value: 'nelsondosreisgomessouza@gmail.com', url: 'mailto:nelsondosreisgomessouza@gmail.com' },
-        { icon: 'phone', label: 'Phone', value: '+55 11 98551-6950', url: 'tel:+5511985516950' },
-      ],
+      title: "Let's talk.",
+      sub: "I'm open to backend roles and projects with C#, .NET or Node. Reach me by email or LinkedIn.",
+      copy: 'Copy email',
+      copied: 'Email copied',
+      resume: 'Download resume',
+      phone: 'Phone',
     },
-    footer: {
-      role: 'Backend Developer',
-      rights: 'All rights reserved.',
-      nav: {
-        about: 'About',
-        projects: 'Projects',
-        skills: 'Skills',
-        email: 'Email',
-        linkedin: 'LinkedIn',
-        github: 'GitHub',
-      },
-    },
+    footer: { built: 'Built with Next.js and Tailwind.' },
   },
 }
