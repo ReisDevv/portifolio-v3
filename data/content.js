@@ -99,7 +99,6 @@ export const content = {
       sub: 'Sou Nelson Reis, dev backend na PRODAM. Construo APIs e sistemas que mantêm a rede de saúde de São Paulo funcionando.',
       primary: 'Ver projetos',
       secondary: 'Contato',
-      photoAlt: 'Nelson Reis na FECAP',
     },
     experience: {
       title: 'Onde eu trabalho e estudo',
@@ -165,7 +164,6 @@ export const content = {
       sub: "I'm Nelson Reis, backend developer at PRODAM. I build the APIs and systems that keep São Paulo's health network running.",
       primary: 'View projects',
       secondary: 'Contact',
-      photoAlt: 'Nelson Reis at FECAP',
     },
     experience: {
       title: 'Where I work and study',

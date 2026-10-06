@@ -15,7 +15,6 @@ export const metadata = {
     title: 'Nelson Reis | Backend Developer',
     description: 'Desenvolvedor backend na PRODAM. C#, .NET, SQL Server e APIs REST.',
     type: 'website',
-    images: ['/assets/portrait.jpg'],
   },
 }
 
