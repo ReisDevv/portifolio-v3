@@ -6,7 +6,7 @@ export const links = {
   email: 'nelsondosreisgomessouza@gmail.com',
   phone: '+55 11 98551-6950',
   phoneHref: 'tel:+5511985516950',
-  resume: '/assets/resume.pdf',
+  resume: '/assets/CV_Nelson.pdf',
 }
 
 // GitHub linguist colors, so each language reads the same as on the repo page.

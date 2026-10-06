@@ -59,7 +59,7 @@ export function Contact() {
         <Reveal delay={0.14} className="mt-12 flex flex-wrap items-center gap-3">
           <a
             href={links.resume}
-            download
+            download="CV_Nelson.pdf"
             className="inline-flex items-center gap-2 rounded-full bg-fg px-6 py-3 text-sm font-medium text-bg transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
           >
             <DownloadSimple size={16} weight="bold" aria-hidden="true" />
